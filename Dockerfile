@@ -8,7 +8,7 @@ USER app
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir --user -r requirements.txt
+RUN sudo pip install --no-cache-dir --user -r requirements.txt
 
 COPY . .
     
