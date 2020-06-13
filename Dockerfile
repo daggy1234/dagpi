@@ -1,7 +1,14 @@
-FROM tiangolo/uvicorn-gunicorn:python3.8
+FROM tiangolo/uvicorn-gunicorn:python3.8-alpine3.10
 
 LABEL maintainer="Sebastian Ramirez <tiangolo@gmail.com>"
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN adduser -S app
 
-COPY ./app /app
+USER app
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir --user -r requirements.txt
+
+COPY . .
+    
