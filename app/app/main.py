@@ -729,3 +729,4 @@ if __name__ == '__main__':
     handler.setFormatter(formatter)
     fastapi_logger.info('****************** Starting Server *****************')
     
+    
