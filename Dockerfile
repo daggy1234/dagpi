@@ -9,4 +9,4 @@ RUN apk add --virtual .build --no-cache gcc musl-dev zlib-dev jpeg-dev && \
 
 USER app
 WORKDIR /app
-COPY . .
+COPY . .    
