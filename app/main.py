@@ -720,13 +720,5 @@ async def charcoal(token: str = Header(None),url:str = Header(None)):
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
-if __name__ == '__main__':
-    formatter = logging.Formatter(
-        "[%(asctime)s.%(msecs)03d] %(levelname)s [%(thread)d] - %(message)s", "%Y-%m-%d %H:%M:%S")
-    handler = RotatingFileHandler('/log/abc.log', backupCount=0)
-    logging.getLogger().setLevel(logging.NOTSET)
-    fastapi_logger.addHandler(handler)
-    handler.setFormatter(formatter)
-    fastapi_logger.info('****************** Starting Server *****************')
-    
+
     
