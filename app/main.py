@@ -94,6 +94,18 @@ def getcharc(image: BytesIO):
         i = BytesIO(bts)
         i.seek(0)
         return(i)
+def getsolar(image: BytesIO):
+    io =BytesIO(image)
+    io.seek(0)
+    with wi.Image() as dst_image:
+        with wi.Image(blob=io) as src_image:
+            for frame in src_image.sequence:
+                frame.solarize(threshold=0.5 * frame.quantum_range)
+                dst_image.sequence.append(frame)
+        bts = dst_image.make_blob()
+        i = BytesIO(bts)
+        i.seek(0)
+        return(i)
 def getpaint(image: BytesIO):
     io =BytesIO(image)
     io.seek(0)
@@ -167,7 +179,7 @@ def getinvert(image: BytesIO):
     with Image.open(io) as t:
         flist = []
         for frame in ImageSequence.Iterator(t):
-            frame = frame.convert('RGBA')
+            frame = frame.convert('RGB')
             blurred_image = ImageOps.invert(frame)
             flist.append(blurred_image)
         retimg = BytesIO()
@@ -458,6 +470,44 @@ async def hitler(token: str = Header(None),url:str = Header(None)):
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
+@app.post('/api/tweet')
+async def tweet(token: str = Header(None),url:str = Header(None),name:str = Header(None),text:str = Header(None)):
+
+    r = await checktoken(token)
+    if r:
+        byt = await getimg(url)
+        if byt == False:
+            return JSONResponse(status_code=400,content={'error':"We were unable to use the link your provided"})
+        else:
+            fn = partial(tweetgen,name,byt,text)
+            loop = asyncio.get_event_loop()
+            img = await loop.run_in_executor(None,fn)
+            if isinstance(img,BytesIO):
+                return StreamingResponse(img, status_code=200,media_type="image/png")
+
+            else:
+                return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
+    else:
+        return JSONResponse(status_code=401,content={'error':'Invalid token'})
+@app.post('/api/quote')
+async def quote(token: str = Header(None),url:str = Header(None),name:str = Header(None),text:str = Header(None)):
+
+    r = await checktoken(token)
+    if r:
+        byt = await getimg(url)
+        if byt == False:
+            return JSONResponse(status_code=400,content={'error':"We were unable to use the link your provided"})
+        else:
+            fn = partial(quotegen,name,byt,text)
+            loop = asyncio.get_event_loop()
+            img = await loop.run_in_executor(None,fn)
+            if isinstance(img,BytesIO):
+                return StreamingResponse(img, status_code=200,media_type="image/png")
+
+            else:
+                return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
+    else:
+        return JSONResponse(status_code=401,content={'error':'Invalid token'})
 @app.post('/api/thoughtimage')
 async def thoughtimage(token: str = Header(None),url:str = Header(None),text:str = Header(None)):
 
@@ -565,7 +615,25 @@ async def paint(token: str = Header(None),url:str = Header(None)):
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
+@app.post('/api/solar')
+async def solar(token: str = Header(None),url:str = Header(None)):
 
+    r = await checktoken(token)
+    if r:
+        byt = await getimg(url)
+        if byt == False:
+            return JSONResponse(status_code=400,content={'error':"We were unable to use the link your provided"})
+        else:
+            fn = partial(getsolar,byt)
+            loop = asyncio.get_event_loop()
+            img = await loop.run_in_executor(None,fn)
+            if isinstance(img,BytesIO):
+                return StreamingResponse(img, status_code=200,media_type="image/gif")
+
+            else:
+                return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
+    else:
+        return JSONResponse(status_code=401,content={'error':'Invalid token'})
 @app.post('/api/evil')
 async def evil(token: str = Header(None),url:str = Header(None)):
 
