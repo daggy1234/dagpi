@@ -7,6 +7,6 @@ install:
 services:
     -docker
 before_script:
-    -docker build -t myimage ./
+    -docker build -t myimage .
 script:
     -docker run -d --name dagpi -p 443:8080 -p 80:8080 -e PORT="8080" myimage
