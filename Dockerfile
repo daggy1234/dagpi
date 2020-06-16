@@ -1,13 +1,32 @@
-FROM tiangolo/uvicorn-gunicorn:python3.8-alpine3.10
+FROM alpine:edge
 
 COPY requirements.txt .
-RUN apk add --no-cache file gcc musl-dev curl tar file   zlib-dev jpeg-dev imagemagick imagemagick-dev tiff-dev  ffmpeg openjpeg-dev libpng-dev jasper-dev freetype-dev ffmpeg-dev  libvpx-dev  lame-dev speex-dev   fftw-dev lcms-dev  openexr-dev pango-dev perl-dev cairo g++ libstdc++ python3-dev bash py3-setuptools   && \
-    pip install --no-cache-dir -r requirements.txt && \    
-    adduser -S app && \
-    rm requirements.txt
 
-
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+    && apk add --no-cache python3 python3-dev py3-pip \
+    && apk add --no-cache --virtual .build-deps gcc libc-dev make \
+    && pip install https://ftp.travitia.xyz/uvloop-0.15.0.dev0-cp38-cp38-linux_x86_64.whl \
+    && pip install --no-cache-dir uvicorn gunicorn fastapi \
+    && apk del .build-deps \
+    && apk add --no-cache gcc musl-dev curl tar file   zlib-dev jpeg-dev imagemagick imagemagick-dev tiff-dev  ffmpeg openjpeg-dev libpng-dev py3-pandas openjpeg-dev freetype-dev ffmpeg-dev  libvpx-dev  lame-dev speex-dev   fftw-dev lcms-dev  py3-aiohttp py3-pillow openexr-dev pango-dev perl-dev cairo g++ libstdc++ bash py3-setuptools \
+    && pip install --no-cache-dir -r requirements.txt \
+    && adduser -S app \
+    && rm requirements.txt \
+    && apk add --virtual .fetch curl \
+    && curl https://raw.githubusercontent.com/tiangolo/uvicorn-gunicorn-docker/master/docker-images/start.sh -o start.sh \
+    && chmod +x start.sh \
+    && curl https://raw.githubusercontent.com/tiangolo/uvicorn-gunicorn-docker/master/docker-images/gunicorn_conf.py -o gunicorn_conf.py \
+    && chmod +x gunicorn_conf.py \
+    && curl https://raw.githubusercontent.com/tiangolo/uvicorn-gunicorn-docker/master/docker-images/start-reload.sh -o start-reload.sh \
+    && chmod +x start-reload.sh \
+    && apk del .fetch
 
 USER app
 COPY ./app /app
-WORKDIR /app
+WORKDIR /app/
+
+ENV PYTHONPATH=/app
+
+EXPOSE 80
+EXPOSE 443
+CMD ["/start.sh"]

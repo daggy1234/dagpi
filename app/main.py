@@ -543,7 +543,7 @@ async def bad(token: str = Header(None),url:str = Header(None)):
 #                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
 #     else:
 #         return JSONResponse(status_code=401,content={'error':'Invalid token'})
-@app.post('/api/hitler')
+@app.post('/api/hitler',response_model=Item,responses=rdict)
 async def hitler(token: str = Header(None),url:str = Header(None)):
     """Make a person worse than hitler by supplying a url"""
 
@@ -563,7 +563,7 @@ async def hitler(token: str = Header(None),url:str = Header(None)):
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
-@app.post('/api/tweet')
+@app.post('/api/tweet',response_model=Item,responses=rdict)
 async def tweet(token: str = Header(None),url:str = Header(None),name:str = Header(None),text:str = Header(None)):
     """Generate a realistic fake tweet of someone by supplying a url, the text and their name"""
 
@@ -583,7 +583,7 @@ async def tweet(token: str = Header(None),url:str = Header(None),name:str = Head
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
-@app.post('/api/quote')
+@app.post('/api/quote',response_model=Item,responses=rdict)
 async def quote(token: str = Header(None),url:str = Header(None),name:str = Header(None),text:str = Header(None)):
     """Get a realistic discord message of someone """
 
@@ -603,7 +603,7 @@ async def quote(token: str = Header(None),url:str = Header(None),name:str = Head
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
-@app.post('/api/thoughtimage')
+@app.post('/api/thoughtimage',response_model=Item,responses=rdict)
 async def thoughtimage(token: str = Header(None),url:str = Header(None),text:str = Header(None)):
     """Help a person think aloud by simply adding text to a thought bubble"""
 
@@ -623,7 +623,7 @@ async def thoughtimage(token: str = Header(None),url:str = Header(None),text:str
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
-@app.post('/api/angel')
+@app.post('/api/angel',response_model=Item,responses=rdict)
 async def angel(token: str = Header(None),url:str = Header(None)):
     """Divine and angelic person"""
 
@@ -655,7 +655,7 @@ async def serverredirect():
 async def comiongsoon():
     return JSONResponse(status_code=404,content={"In the works":"Wrappers soon"})
 
-@app.post('/api/trash')
+@app.post('/api/trash',response_model=Item,responses=rdict)
 async def trash(token: str = Header(None),url:str = Header(None)):
     """Denotes someone is trash aka garbage"""
 
@@ -675,7 +675,7 @@ async def trash(token: str = Header(None),url:str = Header(None)):
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
-@app.post('/api/satan')
+@app.post('/api/satan',response_model=Item,responses=rdict)
 async def satan(token: str = Header(None),url:str = Header(None)):
     """Depcits the true form of a devil in disguise"""
 
@@ -695,7 +695,7 @@ async def satan(token: str = Header(None),url:str = Header(None)):
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
-@app.post('/api/paint')
+@app.post('/api/paint',response_model=Item,responses=rdict)
 async def paint(token: str = Header(None),url:str = Header(None)):
     """Turn a boring old picture/gif into a work of art"""
 
@@ -715,7 +715,7 @@ async def paint(token: str = Header(None),url:str = Header(None)):
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
-@app.post('/api/solar')
+@app.post('/api/solar',response_model=Item,responses=rdict)
 async def solar(token: str = Header(None),url:str = Header(None)):
     """make an image/gif be tripping with weird effects"""
 
@@ -735,7 +735,7 @@ async def solar(token: str = Header(None),url:str = Header(None)):
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
-@app.post('/api/evil')
+@app.post('/api/evil',response_model=Item,responses=rdict)
 async def evil(token: str = Header(None),url:str = Header(None)):
     """*Laughs in Sithlord*"""
 
@@ -755,7 +755,7 @@ async def evil(token: str = Header(None),url:str = Header(None)):
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
-@app.post('/api/blur')
+@app.post('/api/blur',response_model=Item,responses=rdict)
 async def blur(token: str = Header(None),url:str = Header(None)):
     """Blur an image/gif"""
 
@@ -776,7 +776,7 @@ async def blur(token: str = Header(None),url:str = Header(None)):
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 
-@app.post('/api/invert')
+@app.post('/api/invert',response_model=Item,responses=rdict)
 async def invert(token: str = Header(None),url:str = Header(None)):
     """A fliperroni , swithc the colors of an image/gif"""
 
@@ -797,7 +797,7 @@ async def invert(token: str = Header(None),url:str = Header(None)):
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 #uvicorn main:app --reload
-@app.post('/api/pixel')
+@app.post('/api/pixel',response_model=Item,responses=rdict)
 async def pixel(token: str = Header(None),url:str = Header(None)):
     """Retro 8but version of an image/gif"""
 
@@ -817,7 +817,7 @@ async def pixel(token: str = Header(None),url:str = Header(None)):
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
-@app.post('/api/sepia')
+@app.post('/api/sepia',response_model=Item,responses=rdict)
 async def sepia(token: str = Header(None),url:str = Header(None)):
     """Add a cool brown filter on an image/gif"""
 
@@ -837,7 +837,7 @@ async def sepia(token: str = Header(None),url:str = Header(None)):
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
-@app.post('/api/wasted')
+@app.post('/api/wasted',response_model=Item,responses=rdict)
 async def wasted(token: str = Header(None),url:str = Header(None)):
     """GTA V Wasted screen on any image/gif"""
 
@@ -857,7 +857,7 @@ async def wasted(token: str = Header(None),url:str = Header(None)):
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
-@app.post('/api/gay')
+@app.post('/api/gay',response_model=Item,responses=rdict)
 async def gay(token: str = Header(None),url:str = Header(None)):
     """Pride flag on any image/gif. Show some love <3"""
 
@@ -877,7 +877,7 @@ async def gay(token: str = Header(None),url:str = Header(None)):
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
-@app.post('/api/charcoal')
+@app.post('/api/charcoal',response_model=Item,responses=rdict)
 async def charcoal(token: str = Header(None),url:str = Header(None)):
     """Turn an image/gif into an artistic sketch"""
 
@@ -898,7 +898,7 @@ async def charcoal(token: str = Header(None),url:str = Header(None)):
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 
-@app.post('/api/memegen')
+@app.post('/api/memegen',response_model=Item,responses=rdict)
 async def meme(token: str = Header(None),url:str = Header(None),text:str = Header(None)):
     """Generate a meme by supplying the top joke and the template.Supports both gif and static images."""
 
