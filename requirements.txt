@@ -17,4 +17,5 @@ websockets==8.1
 yarl==1.4.2
 praw
 aiofiles
+numpy
 pandas
