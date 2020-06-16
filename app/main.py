@@ -2,20 +2,82 @@ from fastapi import FastAPI,Header
 import aiohttp
 from fastapi.responses import StreamingResponse,JSONResponse,RedirectResponse
 from io import BytesIO
-from fastapi.logger import logger as fastapi_logger
+from fastapi.openapi.utils import get_openapi
+from tokencheck import tokenprocess
+tkc = tokenprocess()
 from PIL import Image,ImageDraw,ImageFont,ImageEnhance,ImageOps,ImageFilter,ImageSequence
 import wand.image as wi
 from datetime import datetime
-import praw
-from logging.handlers import RotatingFileHandler
-import logging
+from pydantic import BaseModel
 from writetext import writetext
+from fastapi.openapi.docs import (
+    get_redoc_html,
+    get_swagger_ui_html,
+    get_swagger_ui_oauth2_redirect_html,
+)
 from functools import partial
 import asyncio
 app = FastAPI()
+from fastapi.staticfiles import StaticFiles
+class Item(BaseModel):
+    id: str
+    value: str
+app = FastAPI(docs_url=None, redoc_url=None)
+app.mount("/static", StaticFiles(directory="static"), name="static")
+# app = FastAPI(docs_url=None, redoc_url=None)
+class Message(BaseModel):
+    message: str
+rdict = {
+    400:{'message':Message,"content": {"application/json": {"example": {'error': "We were unable to use the link your provided"}}}},
+    500:{'message':Message,"content": {"application/json": {"example": {'error': "The Image manipulation had a small error"}}}},
+    401:{'message':Message,"content": {"application/json": {"example": {'error': 'Invalid token'}}}},
+    422:{'message':Message},
+    200:{'message':Message,"content":{"image":{},"application/json": {}}}
+    }
+
 async def checktoken(tok):
-    if str(tok) == 'sexytoken123#':
-        return(True)
+    y = tkc.validtoken(tok)
+    return(y)
+async def checkenhanced(tok):
+    y = tkc.checkenhanced(tok)
+    return (y)
+
+def memegen(byt: BytesIO,text):
+    tv = Image.open(BytesIO(byt))
+
+    if str((tv.format)) == 'GIF':
+        gg = tv
+        tv.seek(0)
+        form = 'gif'
+        print('gif')
+    else:
+        form = 'png'
+    y = Image.new('RGBA',(tv.size[0],800), (256, 256, 256))
+    wra = writetext(y)
+    f = wra.write_text_box(20,-75,text,tv.size[0]-40,'whitney-medium.ttf',60,color=(0,0,0))
+    t = f +75
+    bt = wra.retimg()
+    im = Image.open(bt)
+    ima = im.crop((0,0,tv.size[0],t))
+    retimg = BytesIO()
+    if form == 'gif':
+        flist = []
+        for frame in ImageSequence.Iterator(gg):
+            bcan = Image.new('RGBA',(tv.size[0],tv.size[1]+t), (0, 0, 0, 0))
+            bcan.paste(ima)
+            bcan.paste(frame,(0,t))
+            flist.append(bcan)
+        print(len(flist))
+        flist[0].save(retimg,format='gif',save_all=True,append_images=flist,loop=0)
+        form = 'gif'
+    else:
+        bcan = Image.new('RGBA',(tv.size[0],tv.size[1]+t), (0, 0, 0, 0))
+        bcan.paste(ima)
+        bcan.paste(tv,(0,t))
+        form = 'png'
+        bcan.save(retimg,format='png')
+    retimg.seek(0)
+    return(retimg,form)
 async def getimg(url):
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as r:
@@ -216,7 +278,14 @@ def gethitler(image: BytesIO):
     retimg.seek(0)
     return (retimg)
 
-
+# @app.get("/docs", include_in_schema=False)
+# async def redoc_html():
+#     return get_redoc_html(
+#         openapi_url=app.openapi_url,
+#         title=app.title + " - Docs",
+#         redoc_js_url="/static/redoc.standalone.js",
+#     )
+#
 
 def tweetgen(username,image: BytesIO,tezt):
     today = datetime.today()
@@ -396,11 +465,33 @@ def getangel(image: BytesIO):
         fim.save(bufferedio, format="PNG")
     bufferedio.seek(0)
     return (bufferedio)
-@app.get("/")
+@app.get("/docs", include_in_schema=False)
+async def redoc_html():
+    return get_redoc_html(
+        openapi_url=app.openapi_url,
+        title=app.title + " - ReDoc",
+        redoc_js_url="/static/redoc.standalone.js",
+    )
+@app.get("/playground", include_in_schema=False)
+async def custom_swagger_ui_html():
+    return get_swagger_ui_html(
+        openapi_url=app.openapi_url,
+        title=app.title + " - API playground",
+        oauth2_redirect_url=app.swagger_ui_oauth2_redirect_url,
+        swagger_js_url="/static/swagger-ui-bundle.js",
+        swagger_css_url="/static/swagger-ui.css",
+    )
+
+
+@app.get(app.swagger_ui_oauth2_redirect_url, include_in_schema=False)
+async def swagger_ui_redirect():
+    return get_swagger_ui_oauth2_redirect_html()
+@app.get("/",include_in_schema=False)
 def read_root():
-    return {"Hello": "World"}
-@app.post('/api/wanted')
+    return {"Hello": "World","Join our discord server to get a token":"http://server.daggy.tech","Read the documentation at ":"http://dagpi.tk/docs","Play around with the api (needs token)":"http://dagpi.tk/playground","Check out dagbot":"https://dagbot-is.the-be.st"}
+@app.post('/api/wanted',response_model=Item,responses=rdict)
 async def wanted(token: str = Header(None),url:str = Header(None)):
+    """Get a wanted poster of a person by supplying a url"""
 
     r = await checktoken(token)
     if r:
@@ -418,8 +509,9 @@ async def wanted(token: str = Header(None),url:str = Header(None)):
                 return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
-@app.post('/api/bad')
+@app.post('/api/bad',response_model=Item,responses=rdict)
 async def bad(token: str = Header(None),url:str = Header(None)):
+    """Generate an image pointing at someone calling them bad"""
 
     r = await checktoken(token)
     if r:
@@ -453,6 +545,7 @@ async def bad(token: str = Header(None),url:str = Header(None)):
 #         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 @app.post('/api/hitler')
 async def hitler(token: str = Header(None),url:str = Header(None)):
+    """Make a person worse than hitler by supplying a url"""
 
     r = await checktoken(token)
     if r:
@@ -472,6 +565,7 @@ async def hitler(token: str = Header(None),url:str = Header(None)):
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 @app.post('/api/tweet')
 async def tweet(token: str = Header(None),url:str = Header(None),name:str = Header(None),text:str = Header(None)):
+    """Generate a realistic fake tweet of someone by supplying a url, the text and their name"""
 
     r = await checktoken(token)
     if r:
@@ -491,6 +585,7 @@ async def tweet(token: str = Header(None),url:str = Header(None),name:str = Head
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 @app.post('/api/quote')
 async def quote(token: str = Header(None),url:str = Header(None),name:str = Header(None),text:str = Header(None)):
+    """Get a realistic discord message of someone """
 
     r = await checktoken(token)
     if r:
@@ -498,7 +593,7 @@ async def quote(token: str = Header(None),url:str = Header(None),name:str = Head
         if byt == False:
             return JSONResponse(status_code=400,content={'error':"We were unable to use the link your provided"})
         else:
-            fn = partial(quotegen,name,byt,text)
+            fn = partial(quotegen,name,text,byt)
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None,fn)
             if isinstance(img,BytesIO):
@@ -510,6 +605,7 @@ async def quote(token: str = Header(None),url:str = Header(None),name:str = Head
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 @app.post('/api/thoughtimage')
 async def thoughtimage(token: str = Header(None),url:str = Header(None),text:str = Header(None)):
+    """Help a person think aloud by simply adding text to a thought bubble"""
 
     r = await checktoken(token)
     if r:
@@ -529,6 +625,7 @@ async def thoughtimage(token: str = Header(None),url:str = Header(None),text:str
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 @app.post('/api/angel')
 async def angel(token: str = Header(None),url:str = Header(None)):
+    """Divine and angelic person"""
 
     r = await checktoken(token)
     if r:
@@ -547,19 +644,20 @@ async def angel(token: str = Header(None),url:str = Header(None)):
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 
-@app.get('/api')
+@app.get('/api',include_in_schema=False)
 async def redirecttodocs():
-    return RedirectResponse(url='/redoc')
+    return RedirectResponse(url='/docs')
 
-@app.get('/server')
+@app.get('/server',include_in_schema=False)
 async def serverredirect():
     return RedirectResponse(url='https://discord.gg/4R72Pks')
-@app.get('/wrappers')
+@app.get('/wrappers',include_in_schema=False)
 async def comiongsoon():
     return JSONResponse(status_code=404,content={"In the works":"Wrappers soon"})
 
 @app.post('/api/trash')
 async def trash(token: str = Header(None),url:str = Header(None)):
+    """Denotes someone is trash aka garbage"""
 
     r = await checktoken(token)
     if r:
@@ -579,6 +677,7 @@ async def trash(token: str = Header(None),url:str = Header(None)):
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 @app.post('/api/satan')
 async def satan(token: str = Header(None),url:str = Header(None)):
+    """Depcits the true form of a devil in disguise"""
 
     r = await checktoken(token)
     if r:
@@ -598,6 +697,7 @@ async def satan(token: str = Header(None),url:str = Header(None)):
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 @app.post('/api/paint')
 async def paint(token: str = Header(None),url:str = Header(None)):
+    """Turn a boring old picture/gif into a work of art"""
 
     r = await checktoken(token)
     if r:
@@ -617,6 +717,7 @@ async def paint(token: str = Header(None),url:str = Header(None)):
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 @app.post('/api/solar')
 async def solar(token: str = Header(None),url:str = Header(None)):
+    """make an image/gif be tripping with weird effects"""
 
     r = await checktoken(token)
     if r:
@@ -636,6 +737,7 @@ async def solar(token: str = Header(None),url:str = Header(None)):
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 @app.post('/api/evil')
 async def evil(token: str = Header(None),url:str = Header(None)):
+    """*Laughs in Sithlord*"""
 
     r = await checktoken(token)
     if r:
@@ -655,6 +757,7 @@ async def evil(token: str = Header(None),url:str = Header(None)):
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 @app.post('/api/blur')
 async def blur(token: str = Header(None),url:str = Header(None)):
+    """Blur an image/gif"""
 
     r = await checktoken(token)
     if r:
@@ -675,6 +778,7 @@ async def blur(token: str = Header(None),url:str = Header(None)):
 
 @app.post('/api/invert')
 async def invert(token: str = Header(None),url:str = Header(None)):
+    """A fliperroni , swithc the colors of an image/gif"""
 
     r = await checktoken(token)
     if r:
@@ -695,6 +799,7 @@ async def invert(token: str = Header(None),url:str = Header(None)):
 #uvicorn main:app --reload
 @app.post('/api/pixel')
 async def pixel(token: str = Header(None),url:str = Header(None)):
+    """Retro 8but version of an image/gif"""
 
     r = await checktoken(token)
     if r:
@@ -714,6 +819,7 @@ async def pixel(token: str = Header(None),url:str = Header(None)):
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 @app.post('/api/sepia')
 async def sepia(token: str = Header(None),url:str = Header(None)):
+    """Add a cool brown filter on an image/gif"""
 
     r = await checktoken(token)
     if r:
@@ -733,6 +839,7 @@ async def sepia(token: str = Header(None),url:str = Header(None)):
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 @app.post('/api/wasted')
 async def wasted(token: str = Header(None),url:str = Header(None)):
+    """GTA V Wasted screen on any image/gif"""
 
     r = await checktoken(token)
     if r:
@@ -752,6 +859,7 @@ async def wasted(token: str = Header(None),url:str = Header(None)):
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 @app.post('/api/gay')
 async def gay(token: str = Header(None),url:str = Header(None)):
+    """Pride flag on any image/gif. Show some love <3"""
 
     r = await checktoken(token)
     if r:
@@ -771,6 +879,7 @@ async def gay(token: str = Header(None),url:str = Header(None)):
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 @app.post('/api/charcoal')
 async def charcoal(token: str = Header(None),url:str = Header(None)):
+    """Turn an image/gif into an artistic sketch"""
 
     r = await checktoken(token)
     if r:
@@ -789,4 +898,43 @@ async def charcoal(token: str = Header(None),url:str = Header(None)):
     else:
         return JSONResponse(status_code=401,content={'error':'Invalid token'})
 
-    
+@app.post('/api/memegen')
+async def meme(token: str = Header(None),url:str = Header(None),text:str = Header(None)):
+    """Generate a meme by supplying the top joke and the template.Supports both gif and static images."""
+
+    r = await checktoken(token)
+    if r:
+        byt = await getimg(url)
+        if byt == False:
+            return JSONResponse(status_code=400,content={'error':"We were unable to use the link your provided"})
+        else:
+            fn = partial(memegen,byt,text)
+            loop = asyncio.get_event_loop()
+            img,f = await loop.run_in_executor(None,fn)
+            if isinstance(img,BytesIO):
+                return StreamingResponse(img, status_code=200,media_type=f"image/{f}")
+
+            else:
+                return JSONResponse(status_code=500,content={"error":"The Image manipulation had a small"})
+    else:
+        return JSONResponse(status_code=401,content={'error':'Invalid token'})
+
+def custom_openapi(openapi_prefix: str=''):
+    if app.openapi_schema:
+        return app.openapi_schema
+    openapi_schema = get_openapi(
+        title="Dagpi",
+        version="1.0",
+        description="The Number 1 Image generation api",
+        routes=app.routes,
+        openapi_prefix=openapi_prefix,
+    )
+    openapi_schema["info"]["x-logo"] = {
+        "url": "https://dagbot-is.the-be.st/logo.png"
+    }
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+
+app.openapi = custom_openapi
+

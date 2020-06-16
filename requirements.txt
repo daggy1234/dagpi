@@ -16,3 +16,4 @@ Wand==0.6.1
 websockets==8.1
 yarl==1.4.2
 praw
+aiofiles

@@ -1,5 +1,5 @@
-url = 'https://dagbotapi.herokuapp.com/api/sepia'
-headers = {'url':'','token':'atMoMn2Pg3EUmZ065QBvdJN4IcjNxCQRMv1oZTZWg98i7HelIdvJwHtZFKPgCtf'}
+url = 'http://dagpi.tk/api/quote'
+headers = {'url':'https://media.discordapp.net/attachments/381963689470984203/722043865527484416/unknown.png','token':'sexytoken123#','name':'daggy','text':'testing a tweet lmao'}
 import requests
 from io import BytesIO
 from PIL import Image,ImageSequence

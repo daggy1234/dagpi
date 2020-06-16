@@ -1,17 +1,19 @@
-    
-from PIL import Image,ImageDraw,ImageFont
+from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
+
+
 class writetext(object):
-    def __init__(self,im: Image):
+    def __init__(self, im: Image):
         self.image = im
         self.size = self.image.size
         self.draw = ImageDraw.Draw(self.image)
+
     def retimg(self):
         retimg = BytesIO()
         fim = self.image
         fim.save(retimg, format='PNG')
         retimg.seek(0)
-        return(retimg)
+        return (retimg)
 
     def get_font_size(self, text, font, max_width, max_height):
         if max_width is None and max_height is None:
@@ -19,20 +21,20 @@ class writetext(object):
         font_size = 1
         text_size = self.get_text_size(font, font_size, text)
         if (max_width is not None and text_size[0] > max_width) or \
-           (max_height is not None and text_size[1] > max_height):
+                (max_height is not None and text_size[1] > max_height):
             raise ValueError("Text can't be filled in only (%dpx, %dpx)" % \
-                    text_size)
+                             text_size)
         while True:
             if (max_width is not None and text_size[0] >= max_width) or \
-               (max_height is not None and text_size[1] >= max_height):
+                    (max_height is not None and text_size[1] >= max_height):
                 return font_size - 1
             font_size += 1
             text_size = self.get_text_size(font, font_size, text)
 
-    def write_text(self, x, y, text, font_filename, font_size,max_width=None, max_height=None, color=(0,0,0,0)):
-        
+    def write_text(self, x, y, text, font_filename, font_size, max_width=None, max_height=None, color=(0, 0, 0)):
+
         if font_size == 'fill' and \
-           (max_width is not None or max_height is not None):
+                (max_width is not None or max_height is not None):
             font_size = self.get_font_size(text, font_filename, max_width,
                                            max_height)
         text_size = self.get_text_size(font_filename, font_size, text)
@@ -42,12 +44,12 @@ class writetext(object):
         if y == 'center':
             y = (self.size[1] - text_size[1]) / 2
         self.draw.text((x, y), text, font=font, fill=color)
-        return text_size
+        return (text_size)
 
     def get_text_size(self, font_filename, font_size, text):
         font = ImageFont.truetype(font_filename, font_size)
         return font.getsize(text)
-    
+
     def write_text_box(self, x, y, text, box_width, font_filename,
                        font_size, color, place='left',
                        justify_last_line=False):
@@ -70,20 +72,20 @@ class writetext(object):
         for index, line in enumerate(lines):
             height += text_height
             if place == 'left':
-                self.write_text(x, height, line, font_filename, font_size,color)
+                self.write_text(x, height, line, font_filename, font_size, color=color)
             elif place == 'right':
                 total_size = self.get_text_size(font_filename, font_size, line)
                 x_left = x + box_width - total_size[0]
-                self.write_text(x_left, height, line, font_filename,font_size, color)
+                self.write_text(x_left, height, line, font_filename, font_size, color=color)
             elif place == 'center':
                 total_size = self.get_text_size(font_filename, font_size, line)
                 x_left = int(x + ((box_width - total_size[0]) / 2))
-                self.write_text(x_left, height, line, font_filename,font_size, color)
+                self.write_text(x_left, height, line, font_filename, font_size, color=color)
             elif place == 'justify':
                 words = line.split()
                 if (index == len(lines) - 1 and not justify_last_line) or \
-                   len(words) == 1:
-                    self.write_text(x, height, line, font_filename, font_size,color)
+                        len(words) == 1:
+                    self.write_text(x, height, line, font_filename, font_size, color=color)
                     continue
                 line_without_spaces = ''.join(words)
                 total_size = self.get_text_size(font_filename, font_size,
@@ -91,10 +93,14 @@ class writetext(object):
                 space_width = (box_width - total_size[0]) / (len(words) - 1.0)
                 start_x = x
                 for word in words[:-1]:
-                    self.write_text(start_x, height, word, font_filename,font_size, color)
-                    word_size = self.get_text_size(font_filename, font_size,word)
+                    self.write_text(start_x, height, word, font_filename, font_size, color=color)
+                    word_size = self.get_text_size(font_filename, font_size, word)
                     start_x += word_size[0] + space_width
-                last_word_size = self.get_text_size(font_filename, font_size,words[-1])
+                last_word_size = self.get_text_size(font_filename, font_size, words[-1])
                 last_word_x = x + box_width - last_word_size[0]
-                self.write_text(last_word_x, height, words[-1], font_filename,font_size, color)
+
+                self.write_text(last_word_x, height, words[-1], font_filename, font_size, color=color)
+        return (height)
+
+
 
