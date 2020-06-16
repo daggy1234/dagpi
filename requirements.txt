@@ -19,3 +19,4 @@ praw
 aiofiles
 numpy
 pandas
+tabulate
