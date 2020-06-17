@@ -159,7 +159,7 @@ def getwasted(image: BytesIO):
         i = BytesIO(bts)
         i.seek(0)
     im = Image.open(i)
-    fil = Image.open("../assets/wasted.png")
+    fil = Image.open("assets/wasted.png")
     w, h = im.size
     filr = fil.resize((w, h), 5)
     flist = []
@@ -179,7 +179,7 @@ def getgay(image: BytesIO):
     with Image.open(io) as im:
         flist = []
         w, h = im.size
-        fil = Image.open("../assets/gayfilter.png")
+        fil = Image.open("assets/gayfilter.png")
         filr = fil.resize((w, h), 5)
         for frame in ImageSequence.Iterator(im):
             ci = frame.convert("RGBA")
@@ -326,7 +326,7 @@ def getblur(image: BytesIO):
 
 def gethitler(image: BytesIO):
     with Image.open(BytesIO(image)) as t:
-        im = Image.open("../assets/hitler.jpg")
+        im = Image.open("assets/hitler.jpg")
         wthf = t.resize((260, 300), 5)
 
         width = 800
@@ -377,7 +377,7 @@ def tweetgen(username, image: BytesIO, tezt):
     y = str(today.day).strip("0")
     tstring = f"{h}:{today.minute} {su} - {y} {mo} {today.year}"
     print(tstring)
-    tweet = Image.open("../assets/tweet.png")
+    tweet = Image.open("assets/tweet.png")
     st = username
     lst = st.lower()
     ft = Image.open(BytesIO(image))
@@ -409,7 +409,7 @@ def tweetgen(username, image: BytesIO, tezt):
 
 def getsatan(image: BytesIO):
     with Image.open(BytesIO(image)) as t:
-        im = Image.open("../assets/satan.jpg")
+        im = Image.open("assets/satan.jpg")
         wthf = t.resize((400, 225), 5)
         width = 800
         height = 600
@@ -425,7 +425,7 @@ def getsatan(image: BytesIO):
 
 def getwanted(image: BytesIO):
     with Image.open(BytesIO(image)) as av:
-        im = Image.open("../assets/wanted.png")
+        im = Image.open("assets/wanted.png")
         tp = av.resize((800, 800), 0)
         im.paste(tp, (200, 450))
         retimg = BytesIO()
@@ -437,7 +437,7 @@ def getwanted(image: BytesIO):
 
 def getsithorld(image: BytesIO):
     with Image.open(BytesIO(image)) as ft:
-        im = Image.open("../assets/sithlord.jpg")
+        im = Image.open("assets/sithlord.jpg")
 
         topa = ft.resize((250, 275), 5)
         size = (225, 225)
@@ -454,7 +454,7 @@ def getsithorld(image: BytesIO):
 
 def gettrash(image: BytesIO):
     with Image.open(BytesIO(image)) as t:
-        im = Image.open("../assets/trash.jpg")
+        im = Image.open("assets/trash.jpg")
         wthf = t.resize((200, 150), 5)
         width = 800
         height = 600
@@ -469,7 +469,7 @@ def gettrash(image: BytesIO):
 
 def getthoughtimg(image: BytesIO, text):
     with Image.open(BytesIO(image)) as ft:
-        im = Image.open("../assets/speech.jpg")
+        im = Image.open("assets/speech.jpg")
 
         file = str(text)
         if len(file) > 200:
@@ -516,7 +516,7 @@ def badimg(image: BytesIO):
     io = BytesIO(image)
     io.seek(0)
     with Image.open(BytesIO(image)) as im:
-        back = Image.open("../assets/bad.png")
+        back = Image.open("assets/bad.png")
         t = im.resize((200, 200), 5)
         back.paste(t, (20, 150))
         bufferedio = BytesIO()
@@ -527,7 +527,7 @@ def badimg(image: BytesIO):
 
 def getangel(image: BytesIO):
     with Image.open(BytesIO(image)) as t:
-        im = Image.open("../assets/angel.jpg")
+        im = Image.open("assets/angel.jpg")
         wthf = t.resize((300, 175), 5)
         width = 800
         height = 600
