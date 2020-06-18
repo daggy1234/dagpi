@@ -16,6 +16,7 @@ from PIL import (
     ImageSequence,
 )
 import wand.image as wi
+import os
 from datetime import datetime
 from pydantic import BaseModel
 from writetext import writetext
@@ -38,6 +39,7 @@ class Item(BaseModel):
 
 app = FastAPI(docs_url=None, redoc_url=None)
 app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/bin",StaticFiles(directory='bin'),name='bin')
 # app = FastAPI(docs_url=None, redoc_url=None)
 class Message(BaseModel):
     message: str
@@ -72,7 +74,9 @@ rdict = {
 async def checktoken(tok):
     y = tkc.validtoken(tok)
     return y
-
+async def delimage(source):
+    await asyncio.sleep(60)
+    os.remove(source)
 
 async def checkenhanced(tok):
     y = tkc.checkenhanced(tok)
@@ -519,10 +523,9 @@ def badimg(image: BytesIO):
         back = Image.open("assets/bad.png")
         t = im.resize((200, 200), 5)
         back.paste(t, (20, 150))
-        bufferedio = BytesIO()
-        back.save(bufferedio, format="PNG")
-    bufferedio.seek(0)
-    return bufferedio
+        y = tkc.randomword(10)
+        back.save(f"bin/{y}.png", format="PNG")
+    return (f"bin/{y}.png")
 
 
 def getangel(image: BytesIO):
@@ -615,7 +618,8 @@ async def bad(token: str = Header(None), url: str = Header(None)):
             return "Error"
         else:
             img = badimg(byt)
-            return StreamingResponse(img, media_type="image/png")
+            return JSONResponse(status_code=200,content={'succes':True,'url':f'http://dagpi/tk/{img}'})
+
     else:
         return "Invalid token"
 
