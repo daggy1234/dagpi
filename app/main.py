@@ -36,10 +36,11 @@ class Item(BaseModel):
     id: str
     value: str
 
-
+#/.well-known/acme-challenge
 app = FastAPI(docs_url=None, redoc_url=None)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount("/bin",StaticFiles(directory='bin'),name='bin')
+app.mount("/.well-known/acme-challenge",StaticFiles(directory='.well-known/acme-challenge'),name='.well-known/acme-challenge')
 # app = FastAPI(docs_url=None, redoc_url=None)
 class Message(BaseModel):
     message: str
@@ -67,7 +68,7 @@ rdict = {
         "content": {"application/json": {"example": {"error": "Invalid token"}}},
     },
     422: {"message": Message},
-    200: {"message": Message, "content": {"application/json": {"example": {"succes": True,"url": "http://dagpi/tk/bin/LezddANR4N.png"
+    200: {"message": Message, "content": {"application/json": {"example": {"succes": True,"url": "http://dagpi.tk/bin/LezddANR4N.png"
 }}},
           }}
 
