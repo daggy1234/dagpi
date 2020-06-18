@@ -36,11 +36,11 @@ class Item(BaseModel):
     id: str
     value: str
 
-#/.well-known/acme-challenge
+
+# /.well-known/acme-challenge
 app = FastAPI(docs_url=None, redoc_url=None)
 app.mount("/static", StaticFiles(directory="static"), name="static")
-app.mount("/bin",StaticFiles(directory='bin'),name='bin')
-app.mount("/.well-known/acme-challenge",StaticFiles(directory='.well-known/acme-challenge'),name='.well-known/acme-challenge')
+app.mount("/bin", StaticFiles(directory="bin"), name="bin")
 # app = FastAPI(docs_url=None, redoc_url=None)
 class Message(BaseModel):
     message: str
@@ -68,17 +68,26 @@ rdict = {
         "content": {"application/json": {"example": {"error": "Invalid token"}}},
     },
     422: {"message": Message},
-    200: {"message": Message, "content": {"application/json": {"example": {"succes": True,"url": "http://dagpi.tk/bin/LezddANR4N.png"
-}}},
-          }}
+    200: {
+        "message": Message,
+        "content": {
+            "application/json": {
+                "example": {"succes": True, "url": "http://dagpi.tk/bin/LezddANR4N.png"}
+            }
+        },
+    },
+}
 
 
 async def checktoken(tok):
     y = tkc.validtoken(tok)
     return y
+
+
 async def delimage(source):
     await asyncio.sleep(60)
     os.remove(source)
+
 
 async def checkenhanced(tok):
     y = tkc.checkenhanced(tok)
@@ -113,7 +122,14 @@ def memegen(byt: BytesIO, text):
             bcan.paste(frame, (0, t))
             flist.append(bcan)
         y = tkc.randomword(10)
-        flist[0].save(f"bin/{y}.gif", format="gif", save_all=True, append_images=flist,optimize=True,loop=0)
+        flist[0].save(
+            f"bin/{y}.gif",
+            format="gif",
+            save_all=True,
+            append_images=flist,
+            optimize=True,
+            loop=0,
+        )
         form = "gif"
     else:
         bcan = Image.new("RGBA", (tv.size[0], tv.size[1] + t), (0, 0, 0, 0))
@@ -122,7 +138,7 @@ def memegen(byt: BytesIO, text):
         form = "png"
         y = tkc.randomword(10)
         bcan.save(f"bin/{y}.png", format="PNG", optimize=True)
-    return (f"bin/{y}.{form}")
+    return f"bin/{y}.{form}"
 
 
 async def getimg(url):
@@ -149,7 +165,7 @@ def getsepia(image: BytesIO):
                 dst_image.sequence.append(frame)
         y = tkc.randomword(10)
         dst_image.save(filename=f"bin/{y}.gif")
-        return (f"bin/{y}.gif")
+        return f"bin/{y}.gif"
 
 
 def getwasted(image: BytesIO):
@@ -173,8 +189,10 @@ def getwasted(image: BytesIO):
         ci.paste(filr, mask=filr)
         flist.append(ci)
     y = tkc.randomword(10)
-    flist[0].save(f"bin/{y}.gif", format="gif", save_all=True, append_images=flist, optimize=True)
-    return (f"bin/{y}.gif")
+    flist[0].save(
+        f"bin/{y}.gif", format="gif", save_all=True, append_images=flist, optimize=True
+    )
+    return f"bin/{y}.gif"
 
 
 def getgay(image: BytesIO):
@@ -191,8 +209,14 @@ def getgay(image: BytesIO):
             ci.show()
             flist.append(ci)
         y = tkc.randomword(10)
-        flist[0].save(f"bin/{y}.gif", format="gif", save_all=True, append_images=flist, optimize=True)
-        return (f"bin/{y}.gif")
+        flist[0].save(
+            f"bin/{y}.gif",
+            format="gif",
+            save_all=True,
+            append_images=flist,
+            optimize=True,
+        )
+        return f"bin/{y}.gif"
 
 
 def getcharc(image: BytesIO):
@@ -206,7 +230,8 @@ def getcharc(image: BytesIO):
                 dst_image.sequence.append(frame)
         y = tkc.randomword(10)
         dst_image.save(filename=f"bin/{y}.gif")
-        return (f"bin/{y}.gif")
+        return f"bin/{y}.gif"
+
 
 def getsolar(image: BytesIO):
     io = BytesIO(image)
@@ -218,7 +243,7 @@ def getsolar(image: BytesIO):
                 dst_image.sequence.append(frame)
         y = tkc.randomword(10)
         dst_image.save(filename=f"bin/{y}.gif")
-        return (f"bin/{y}.gif")
+        return f"bin/{y}.gif"
 
 
 def getpaint(image: BytesIO):
@@ -231,7 +256,7 @@ def getpaint(image: BytesIO):
                 dst_image.sequence.append(frame)
         y = tkc.randomword(10)
         dst_image.save(filename=f"bin/{y}.gif")
-        return (f"bin/{y}.gif")
+        return f"bin/{y}.gif"
 
 
 def quotegen(user, text, img: BytesIO):
@@ -274,7 +299,8 @@ def quotegen(user, text, img: BytesIO):
         out = Image.alpha_composite(top, ima)
         y = tkc.randomword(10)
         out.save(f"bin/{y}.png", format="PNG", optimize=True)
-    return (f"bin/{y}.png")
+    return f"bin/{y}.png"
+
 
 def getpixel(image: BytesIO):
     io = BytesIO(image)
@@ -286,8 +312,16 @@ def getpixel(image: BytesIO):
             fim = imgSmall.resize(frame.size, Image.NEAREST)
             flist.append(fim)
         y = tkc.randomword(10)
-        flist[0].save(f"bin/{y}.gif", format="gif", save_all=True, append_images=flist, optimize=True)
-        return (f"bin/{y}.gif")
+        flist[0].save(
+            f"bin/{y}.gif",
+            format="gif",
+            save_all=True,
+            append_images=flist,
+            optimize=True,
+        )
+        return f"bin/{y}.gif"
+
+
 def getdeepfry(image: BytesIO):
     io = BytesIO(image)
     io.seek(0)
@@ -295,12 +329,18 @@ def getdeepfry(image: BytesIO):
         flist = []
         for frame in ImageSequence.Iterator(t):
             colours = ((254, 0, 2), (255, 255, 15))
-            img = frame.convert('RGB')
+            img = frame.convert("RGB")
             flare_positions = []
             width, height = img.width, img.height
-            img = img.resize((int(width ** .75), int(height ** .75)), resample=Image.LANCZOS)
-            img = img.resize((int(width ** .88), int(height ** .88)), resample=Image.BILINEAR)
-            img = img.resize((int(width ** .9), int(height ** .9)), resample=Image.BICUBIC)
+            img = img.resize(
+                (int(width ** 0.75), int(height ** 0.75)), resample=Image.LANCZOS
+            )
+            img = img.resize(
+                (int(width ** 0.88), int(height ** 0.88)), resample=Image.BILINEAR
+            )
+            img = img.resize(
+                (int(width ** 0.9), int(height ** 0.9)), resample=Image.BICUBIC
+            )
             img = img.resize((width, height), resample=Image.BICUBIC)
             img = ImageOps.posterize(img, 4)
             r = img.split()[0]
@@ -314,8 +354,15 @@ def getdeepfry(image: BytesIO):
             img = ImageEnhance.Sharpness(img).enhance(100.0)
             flist.append(img)
         y = tkc.randomword(10)
-        flist[0].save(f"bin/{y}.gif", format="gif", save_all=True, append_images=flist, optimize=True)
-        return (f"bin/{y}.gif")
+        flist[0].save(
+            f"bin/{y}.gif",
+            format="gif",
+            save_all=True,
+            append_images=flist,
+            optimize=True,
+        )
+        return f"bin/{y}.gif"
+
 
 def getinvert(image: BytesIO):
     io = BytesIO(image)
@@ -327,8 +374,14 @@ def getinvert(image: BytesIO):
             blurred_image = ImageOps.invert(frame)
             flist.append(blurred_image)
         y = tkc.randomword(10)
-        flist[0].save(f"bin/{y}.gif", format="gif", save_all=True, append_images=flist, optimize=True)
-        return (f"bin/{y}.gif")
+        flist[0].save(
+            f"bin/{y}.gif",
+            format="gif",
+            save_all=True,
+            append_images=flist,
+            optimize=True,
+        )
+        return f"bin/{y}.gif"
 
 
 def getblur(image: BytesIO):
@@ -341,8 +394,14 @@ def getblur(image: BytesIO):
             blurred_image = frame.filter(ImageFilter.BLUR)
             flist.append(blurred_image)
         y = tkc.randomword(10)
-        flist[0].save(f"bin/{y}.gif", format="gif", save_all=True, append_images=flist, optimize=True)
-        return (f"bin/{y}.gif")
+        flist[0].save(
+            f"bin/{y}.gif",
+            format="gif",
+            save_all=True,
+            append_images=flist,
+            optimize=True,
+        )
+        return f"bin/{y}.gif"
 
 
 def gethitler(image: BytesIO):
@@ -357,7 +416,7 @@ def gethitler(image: BytesIO):
         fim.paste(wthf, area)
         y = tkc.randomword(10)
         fim.save(f"bin/{y}.png", format="PNG", optimize=True)
-    return (f"bin/{y}.png")
+    return f"bin/{y}.png"
 
 
 # @app.get("/docs", include_in_schema=False)
@@ -424,9 +483,9 @@ def tweetgen(username, image: BytesIO, tezt):
     )
     t = imgwrap.retimg()
     y = tkc.randomword(10)
-    with open(f"bin/{y}.png",'wb') as out:
+    with open(f"bin/{y}.png", "wb") as out:
         out.write(t.read())
-    return (f"bin/{y}.png")
+    return f"bin/{y}.png"
 
 
 def getsatan(image: BytesIO):
@@ -440,7 +499,7 @@ def getsatan(image: BytesIO):
         fim.paste(wthf, area)
         y = tkc.randomword(10)
         fim.save(f"bin/{y}.png", format="PNG", optimize=True)
-    return (f"bin/{y}.png")
+    return f"bin/{y}.png"
 
 
 def getwanted(image: BytesIO):
@@ -450,7 +509,7 @@ def getwanted(image: BytesIO):
         im.paste(tp, (200, 450))
         y = tkc.randomword(10)
         im.save(f"bin/{y}.png", format="PNG", optimize=True)
-    return (f"bin/{y}.png")
+    return f"bin/{y}.png"
 
 
 def getsithorld(image: BytesIO):
@@ -466,7 +525,7 @@ def getsithorld(image: BytesIO):
         im.paste(topt, (225, 180), mask=mask)
         y = tkc.randomword(10)
         im.save(f"bin/{y}.png", format="PNG", optimize=True)
-    return (f"bin/{y}.png")
+    return f"bin/{y}.png"
 
 
 def gettrash(image: BytesIO):
@@ -480,7 +539,7 @@ def gettrash(image: BytesIO):
         fim.paste(wthf, area)
         y = tkc.randomword(10)
         fim.save(f"bin/{y}.png", format="PNG", optimize=True)
-    return (f"bin/{y}.png")
+    return f"bin/{y}.png"
 
 
 def getthoughtimg(image: BytesIO, text):
@@ -524,7 +583,7 @@ def getthoughtimg(image: BytesIO, text):
             out = Image.alpha_composite(base, txt)
             y = tkc.randomword(10)
             out.save(f"bin/{y}.png", format="PNG", optimize=True)
-        return (f"bin/{y}.png")
+        return f"bin/{y}.png"
 
 
 def badimg(image: BytesIO):
@@ -535,8 +594,8 @@ def badimg(image: BytesIO):
         t = im.resize((200, 200), 5)
         back.paste(t, (20, 150))
         y = tkc.randomword(10)
-        back.save(f"bin/{y}.png", format="PNG",optimize=True)
-    return (f"bin/{y}.png")
+        back.save(f"bin/{y}.png", format="PNG", optimize=True)
+    return f"bin/{y}.png"
 
 
 def getangel(image: BytesIO):
@@ -550,10 +609,7 @@ def getangel(image: BytesIO):
         fim.paste(wthf, area)
         y = tkc.randomword(10)
         fim.save(f"bin/{y}.png", format="PNG", optimize=True)
-    return (f"bin/{y}.png")
-
-
-
+    return f"bin/{y}.png"
 
 
 @app.get("/docs", include_in_schema=False)
@@ -609,7 +665,10 @@ async def wanted(token: str = Header(None), url: str = Header(None)):
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -631,7 +690,10 @@ async def bad(token: str = Header(None), url: str = Header(None)):
             return "Error"
         else:
             img = badimg(byt)
-            return JSONResponse(status_code=200,content={'succes':True,'url':f'http://dagpi.tk/{img}'})
+            return JSONResponse(
+                status_code=200,
+                content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+            )
 
     else:
         return "Invalid token"
@@ -673,7 +735,10 @@ async def hitler(token: str = Header(None), url: str = Header(None)):
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -706,7 +771,10 @@ async def tweet(
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -739,7 +807,10 @@ async def quote(
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -769,7 +840,10 @@ async def thoughtimage(
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -797,7 +871,10 @@ async def angel(token: str = Header(None), url: str = Header(None)):
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -840,7 +917,10 @@ async def trash(token: str = Header(None), url: str = Header(None)):
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -868,7 +948,10 @@ async def satan(token: str = Header(None), url: str = Header(None)):
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -896,7 +979,10 @@ async def paint(token: str = Header(None), url: str = Header(None)):
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -924,7 +1010,10 @@ async def solar(token: str = Header(None), url: str = Header(None)):
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -952,7 +1041,10 @@ async def evil(token: str = Header(None), url: str = Header(None)):
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -980,7 +1072,10 @@ async def blur(token: str = Header(None), url: str = Header(None)):
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -1008,7 +1103,10 @@ async def invert(token: str = Header(None), url: str = Header(None)):
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -1037,7 +1135,10 @@ async def pixel(token: str = Header(None), url: str = Header(None)):
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -1046,6 +1147,7 @@ async def pixel(token: str = Header(None), url: str = Header(None)):
                 )
     else:
         return JSONResponse(status_code=401, content={"error": "Invalid token"})
+
 
 @app.post("/api/deepfry", response_model=Item, responses=rdict)
 async def deepfry(token: str = Header(None), url: str = Header(None)):
@@ -1064,7 +1166,10 @@ async def deepfry(token: str = Header(None), url: str = Header(None)):
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -1073,6 +1178,7 @@ async def deepfry(token: str = Header(None), url: str = Header(None)):
                 )
     else:
         return JSONResponse(status_code=401, content={"error": "Invalid token"})
+
 
 @app.post("/api/sepia", response_model=Item, responses=rdict)
 async def sepia(token: str = Header(None), url: str = Header(None)):
@@ -1091,7 +1197,10 @@ async def sepia(token: str = Header(None), url: str = Header(None)):
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -1119,7 +1228,10 @@ async def wasted(token: str = Header(None), url: str = Header(None)):
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -1147,7 +1259,10 @@ async def gay(token: str = Header(None), url: str = Header(None)):
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -1175,7 +1290,10 @@ async def charcoal(token: str = Header(None), url: str = Header(None)):
             loop = asyncio.get_event_loop()
             img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
@@ -1205,7 +1323,10 @@ async def meme(
             loop = asyncio.get_event_loop()
             img, f = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
-                return JSONResponse(status_code=200, content={'succes': True, 'url': f'http://dagpi.tk/{img}'})
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
 
             else:
                 return JSONResponse(
