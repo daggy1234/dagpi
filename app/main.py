@@ -1321,7 +1321,7 @@ async def meme(
         else:
             fn = partial(memegen, byt, text)
             loop = asyncio.get_event_loop()
-            img, f = await loop.run_in_executor(None, fn)
+            img = await loop.run_in_executor(None, fn)
             if isinstance(img, str):
                 return JSONResponse(
                     status_code=200,
