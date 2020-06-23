@@ -66,3 +66,6 @@ class tokenprocess(object):
         df.loc[df.uses != 0, "uses"] = 0
         df.to_csv("tokens.csv", index=False)
         return True
+#
+# y = tokenprocess()
+# print(y.randomword(64))

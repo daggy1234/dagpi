@@ -1304,7 +1304,7 @@ async def charcoal(token: str = Header(None), url: str = Header(None)):
         return JSONResponse(status_code=401, content={"error": "Invalid token"})
 
 
-@app.post("/api/memegen", response_model=Item, responses=rdict)
+@app.post("/api/meme", response_model=Item, responses=rdict)
 async def meme(
     token: str = Header(None), url: str = Header(None), text: str = Header(None)
 ):
