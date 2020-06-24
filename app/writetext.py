@@ -135,4 +135,6 @@ class writetext(object):
                     font_size,
                     color=color,
                 )
-        return height
+        fsizee = self.get_text_size(font_filename, font_size, 'text')
+        height += int(fsizee[1] * 1.5)
+        return (height)
