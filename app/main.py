@@ -118,6 +118,22 @@ def memegen(byt: BytesIO, text):
         sfm = [80, 60, 40, 30]
         mplier = 0.01
         hply = 0.5
+    elif wid < 1500 and wid >= 1000:
+        sfm = [100, 80, 60, 40]
+        mplier = 0.01
+        hply = 0.6
+    elif wid < 2000 and wid >= 1400:
+        sfm = [120, 100, 80, 60]
+        mplier = 0.01
+        hply = 0.6
+    elif wid >= 2000 and wid < 3000:
+        sfm = [140, 120, 100, 80]
+        mplier = 0.01
+        hply = 0.6
+    elif wid >= 3000:
+        sfm = [180, 160, 140, 120]
+        mplier = 0.01
+        hply = 0.6
     x_pos = int(mplier * wid)
     y_pos = int(-1 * (mplier * hply * 10) * hei)
     if len(text) < 50 and len(text) > 0:
