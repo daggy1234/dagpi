@@ -139,10 +139,9 @@ def memegen(byt: BytesIO, text):
     y = Image.new("RGBA", (tv.size[0], 800), (256, 256, 256))
     wra = writetext(y)
     f = wra.write_text_box(
-        x_pos, -10, text, tv.size[0] - 40, "whitney-medium.ttf", size, color=(0, 0, 0)
+        x_pos, -10, text, tv.size[0] - 40, "assets/whitney-medium.ttf", size, color=(0, 0, 0)
     )
-    t = int(f + (1 - hply) * f * (hply * (4)))
-    # t = f
+    t = f
     bt = wra.retimg()
     im = Image.open(bt)
     ima = im.crop((0, 0, tv.size[0], t))
