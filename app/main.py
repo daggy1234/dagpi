@@ -96,24 +96,56 @@ async def checkenhanced(tok):
 
 def memegen(byt: BytesIO, text):
     tv = Image.open(BytesIO(byt))
-
+    wid = (tv.size)[0]
+    hei = (tv.size)[0]
+    if wid > 0 and wid < 200:
+        sfm = [25, 15, 10, 5]
+        mplier = 0.1
+        hply = 0.1
+    elif wid < 400 and wid >= 200:
+        sfm = [30, 20, 10, 5]
+        mplier = 0.075
+        hply = 0.2
+    elif wid >= 400 and wid < 600:
+        sfm = [50, 30, 20, 10]
+        mplier = 0.05
+        hply = 0.3
+    elif wid < 800 and wid >= 600:
+        sfm = [70, 50, 30, 20]
+        mplier = 0.025
+        hply = 0.4
+    elif wid < 1000 and wid >= 800:
+        sfm = [80, 60, 40, 30]
+        mplier = 0.01
+        hply = 0.5
+    x_pos = int(mplier * wid)
+    y_pos = int(-1 * (mplier * hply * 10) * hei)
+    if len(text) < 50 and len(text) > 0:
+        size = sfm[1]
+    elif len(text) < 100 and len(text) > 50:
+        size = sfm[1]
+    elif len(text) > 100 and len(text) < 250:
+        size = sfm[2]
+    elif len(text) > 250 and len(text) > 500:
+        size = sfm[3]
+    elif len(text) > 500 and len(text) < 1000:
+        size = sfm[4]
     if str((tv.format)) == "GIF":
         gg = tv
         tv.seek(0)
         form = "gif"
-        print("gif")
     else:
         form = "png"
     y = Image.new("RGBA", (tv.size[0], 800), (256, 256, 256))
     wra = writetext(y)
     f = wra.write_text_box(
-        20, -75, text, tv.size[0] - 40, "assets/whitney-medium.ttf", 60, color=(0, 0, 0)
+        x_pos, -10, text, tv.size[0] - 40, "whitney-medium.ttf", size, color=(0, 0, 0)
     )
-    t = f + 75
+    t = int(f + (1 - hply) * f * (hply * (4)))
+    # t = f
     bt = wra.retimg()
     im = Image.open(bt)
     ima = im.crop((0, 0, tv.size[0], t))
-    retimg = BytesIO()
     if form == "gif":
         flist = []
         for frame in ImageSequence.Iterator(gg):
