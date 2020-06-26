@@ -240,6 +240,28 @@ def getwasted(image: BytesIO):
         f"bin/{y}.gif", format="gif", save_all=True, append_images=flist, optimize=True
     )
     return f"bin/{y}.gif"
+def getjail(image: BytesIO):
+    io = BytesIO(image)
+    io.seek(0)
+    with Image.open(io) as im:
+        flist = []
+        w, h = im.size
+        fil = Image.open("assets/jail.png")
+        filr = fil.resize((w, h), 5)
+        for frame in ImageSequence.Iterator(im):
+            ci = frame.convert("RGBA")
+            ci.paste(filr, mask=filr)
+            ci.show()
+            flist.append(ci)
+        y = tkc.randomword(10)
+        flist[0].save(
+            f"bin/{y}.gif",
+            format="gif",
+            save_all=True,
+            append_images=flist,
+            optimize=True,
+        )
+        return f"bin/{y}.gif"
 
 
 def getgay(image: BytesIO):
@@ -304,8 +326,39 @@ def getpaint(image: BytesIO):
         y = tkc.randomword(10)
         dst_image.save(filename=f"bin/{y}.gif")
         return f"bin/{y}.gif"
-
-
+def getswirl(image: BytesIO):
+    io = BytesIO(image)
+    io.seek(0)
+    with wi.Image() as dst_image:
+        with wi.Image(blob=io) as src_image:
+            for frame in src_image.sequence:
+                frame.swirl(degree=-90)
+                dst_image.sequence.append(frame)
+        y = tkc.randomword(10)
+        dst_image.save(filename=f"bin/{y}.gif")
+        return f"bin/{y}.gif"
+def getpolaroid(image: BytesIO):
+    io = BytesIO(image)
+    io.seek(0)
+    with wi.Image() as dst_image:
+        with wi.Image(blob=io) as src_image:
+            for frame in src_image.sequence:
+                frame.polaroid()
+                dst_image.sequence.append(frame)
+        y = tkc.randomword(10)
+        dst_image.save(filename=f"bin/{y}.gif")
+        return f"bin/{y}.gif"
+def getnight(image: BytesIO):
+    io = BytesIO(image)
+    io.seek(0)
+    with wi.Image() as dst_image:
+        with wi.Image(blob=io) as src_image:
+            for frame in src_image.sequence:
+                frame.blue_shift(factor=1.25)
+                dst_image.sequence.append(frame)
+        y = tkc.randomword(10)
+        dst_image.save(filename=f"bin/{y}.gif")
+        return f"bin/{y}.gif"
 def quotegen(user, text, img: BytesIO):
     today = datetime.today()
     y = Image.new("RGBA", (2400, 800), (0, 0, 0, 0))
@@ -1039,7 +1092,65 @@ async def paint(token: str = Header(None), url: str = Header(None)):
     else:
         return JSONResponse(status_code=401, content={"error": "Invalid token"})
 
+@app.post("/api/night", response_model=Item, responses=rdict)
+async def night(token: str = Header(None), url: str = Header(None)):
+    """Turn a   picture/gif into a nighttime scene"""
 
+    r = await checktoken(token)
+    if r:
+        byt = await getimg(url)
+        if byt == False:
+            return JSONResponse(
+                status_code=400,
+                content={"error": "We were unable to use the link your provided"},
+            )
+        else:
+            fn = partial(getnight, byt)
+            loop = asyncio.get_event_loop()
+            img = await loop.run_in_executor(None, fn)
+            if isinstance(img, str):
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
+
+            else:
+                return JSONResponse(
+                    status_code=500,
+                    content={"error": "The Image manipulation had a small"},
+                )
+    else:
+        return JSONResponse(status_code=401, content={"error": "Invalid token"})
+
+@app.post("/api/polaroid", response_model=Item, responses=rdict)
+async def polaroid(token: str = Header(None), url: str = Header(None)):
+    """Turn a   picture/gif into a polarid image"""
+
+    r = await checktoken(token)
+    if r:
+        byt = await getimg(url)
+        if byt == False:
+            return JSONResponse(
+                status_code=400,
+                content={"error": "We were unable to use the link your provided"},
+            )
+        else:
+            fn = partial(getpolaroid, byt)
+            loop = asyncio.get_event_loop()
+            img = await loop.run_in_executor(None, fn)
+            if isinstance(img, str):
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
+
+            else:
+                return JSONResponse(
+                    status_code=500,
+                    content={"error": "The Image manipulation had a small"},
+                )
+    else:
+        return JSONResponse(status_code=401, content={"error": "Invalid token"})
 @app.post("/api/solar", response_model=Item, responses=rdict)
 async def solar(token: str = Header(None), url: str = Header(None)):
     """make an image/gif be tripping with weird effects"""
@@ -1289,6 +1400,35 @@ async def wasted(token: str = Header(None), url: str = Header(None)):
         return JSONResponse(status_code=401, content={"error": "Invalid token"})
 
 
+@app.post("/api/jail", response_model=Item, responses=rdict)
+async def jail(token: str = Header(None), url: str = Header(None)):
+    """Put someone behind bars"""
+
+    r = await checktoken(token)
+    if r:
+        byt = await getimg(url)
+        if byt == False:
+            return JSONResponse(
+                status_code=400,
+                content={"error": "We were unable to use the link your provided"},
+            )
+        else:
+            fn = partial(getjail, byt)
+            loop = asyncio.get_event_loop()
+            img = await loop.run_in_executor(None, fn)
+            if isinstance(img, str):
+                return JSONResponse(
+                    status_code=200,
+                    content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+                )
+
+            else:
+                return JSONResponse(
+                    status_code=500,
+                    content={"error": "The Image manipulation had a small"},
+                )
+    else:
+        return JSONResponse(status_code=401, content={"error": "Invalid token"})
 @app.post("/api/gay", response_model=Item, responses=rdict)
 async def gay(token: str = Header(None), url: str = Header(None)):
     """Pride flag on any image/gif. Show some love <3"""
@@ -1318,7 +1458,6 @@ async def gay(token: str = Header(None), url: str = Header(None)):
                 )
     else:
         return JSONResponse(status_code=401, content={"error": "Invalid token"})
-
 
 @app.post("/api/charcoal", response_model=Item, responses=rdict)
 async def charcoal(token: str = Header(None), url: str = Header(None)):
