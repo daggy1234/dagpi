@@ -2,3 +2,4 @@ Wand==0.6.1
 praw
 aiofiles
 tabulate
+sentry_sdk

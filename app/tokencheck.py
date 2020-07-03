@@ -28,11 +28,15 @@ class tokenprocess(object):
         df = pd.read_csv("tokens.csv")
         l = df.loc[(df.token == token)]
         if l.empty:
-            return False
+            return False,1
         else:
+            rt = df[df.token == token].uses
+            if int(rt) >= 60:
+                return False,2
             df.loc[(df.token == token), "uses"] += 1
+            df.loc[(df.token == token), "totaluses"] += 1
             df.to_csv("tokens.csv", index=False)
-            return True
+            return True,0
 
     def showtokens(self):
         df = pd.read_csv("tokens.csv")
@@ -47,7 +51,9 @@ class tokenprocess(object):
             return True
         else:
             return (False, 1)
-
+    def getstats(self):
+        df = pd.read_csv('tokens.csv')
+        return (df.shape)
     def adduser(self, userid):
         tkst = self.randomword(64)
         df = pd.read_csv("tokens.csv")
@@ -57,9 +63,9 @@ class tokenprocess(object):
                 ignore_index=True,
             )
             newdf.to_csv("tokens.csv", index=False)
-            return True
+            return True,tkst
         else:
-            return (False, 1)
+            return False, 1
 
     def resetlimits(self):
         df = pd.read_csv("tokens.csv")
@@ -68,6 +74,9 @@ class tokenprocess(object):
         return True
 
 
-#
+# #
 # y = tokenprocess()
-# print(y.randomword(64))
+# try:
+#     y.resetlimits()
+# except:
+#     print('error')
