@@ -13,7 +13,6 @@ from fastapi.openapi.utils import get_openapi
 sentry_sdk.init(dsn=config.sentry)
 from tokencheck import tokenprocess
 from datetime import datetime, timedelta
-from aioscheduler import TimedScheduler
 import wand.exceptions as we
 tkc = tokenprocess()
 from PIL import (
