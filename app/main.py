@@ -1716,7 +1716,7 @@ async def main():
         await asyncio.sleep(60)
 
 
-loop = asyncio.get_running_loop()
+loop = asyncio.get_event_loop()
 task = loop.create_task(main())
 try:
     task
