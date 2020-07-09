@@ -5,13 +5,9 @@ from tabulate import tabulate
 
 
 class tokenprocess(object):
-    def __init__(self):
-        print("class inited lmao")
-
     def checkenhanced(self, token):
         df = pd.read_csv("tokens.csv")
         l = df.loc[(df.token == token) & (df.enhanced == 1)]
-        print(l)
         if l.empty:
             return False
         else:
@@ -21,9 +17,15 @@ class tokenprocess(object):
         letters = string.ascii_lowercase + string.ascii_uppercase + string.digits
 
         st = "".join(random.choice(letters) for i in range(length))
-        print(st)
         return st
-
+    def gettoken(self,userid):
+        userid = int(userid)
+        df = pd.read_csv('tokens.csv')
+        l = df.loc[(df.userid == userid)]
+        if l.empty:
+            return False,1
+        else:
+            return True, l.iloc[0]['token']
     def validtoken(self, token):
         df = pd.read_csv("tokens.csv")
         l = df.loc[(df.token == token)]
@@ -57,15 +59,18 @@ class tokenprocess(object):
     def adduser(self, userid):
         tkst = self.randomword(64)
         df = pd.read_csv("tokens.csv")
+        userid = int(userid)
         if userid not in df["userid"].tolist():
             newdf = df.append(
-                {"token": tkst, "uses": 0, "userid": userid, "enhanced": 0},
+                {"token": tkst, "totaluses": 0, "userid": userid, "uses": 0, "enhanced": 0},
                 ignore_index=True,
             )
             newdf.to_csv("tokens.csv", index=False)
             return True,tkst
+        if userid in df["userid"].tolist():
+            return False,1
         else:
-            return False, 1
+            return False, 2
 
     def resetlimits(self):
         df = pd.read_csv("tokens.csv")
@@ -73,9 +78,20 @@ class tokenprocess(object):
         df.to_csv("tokens.csv", index=False)
         return True
 
+# y = tokenprocess()
+# stat,co = y.adduser('491174779278065689')
+# if stat == True:
+#     print('Added user',co)
+# elif stat == False:
+#     if co == 1:
+#         tok = y.gettoken('491174779278065689')
+#         print(tok)
+#     else:
+#         print('some error occured while adding the token')
 
 # #
 # y = tokenprocess()
+# print(y.randomword(64))
 # try:
 #     y.resetlimits()
 # except:
