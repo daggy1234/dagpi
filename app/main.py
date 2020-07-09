@@ -1849,7 +1849,7 @@ async def whosethatpokemon( token: str = Header(None)):
 #                 else:
 #                     continue
 #         except:
-            raise
+            #raise
 
 @app.post("/api/meme", response_model=Item, responses=rdict,include_in_schema=False)
 async def meme(
