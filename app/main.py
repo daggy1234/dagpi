@@ -7,6 +7,7 @@ from fastapi.responses import StreamingResponse, JSONResponse, RedirectResponse
 from io import BytesIO
 import random
 import typing
+import qrcode
 import sentry_sdk
 from skimage.morphology import skeletonize,disk
 import skimage
@@ -19,8 +20,10 @@ from skimage.segmentation import chan_vese,watershed
 from io import BytesIO
 from skimage.feature import hog
 import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 from sentry_sdk.integrations.wsgi import SentryWsgiMiddleware
 import re
+import numpy as np
 import textwrap
 from async_timeout import timeout
 from fastapi.openapi.utils import get_openapi
@@ -505,7 +508,11 @@ def getedged(image: BytesIO):
         y = tkc.randomword(10)
         dst_image.save(filename=f"bin/{y}.gif")
         return f"bin/{y}.gif"
-
+def makeqr(text):
+    qr = qrcode.make(text)
+    y = tkc.randomword(10)
+    qr.save(f"bin/{y}.png")
+    return f"bin/{y}.png"
 def getnight(image: BytesIO):
     io = BytesIO(image)
     io.seek(0)
@@ -679,7 +686,103 @@ def gethitler(image):
 #         redoc_js_url="/static/redoc.standalone.js",
 #     )
 #
+def rgb_to_hex(rgb):
+    return ('#%02x%02x%02x' % rgb).upper()
+def top5colors(path):
+    im = pilimagereturn(path)
+    w,h = im.size
+    font = ImageFont.truetype('assets/Helvetica Neu Bold.ttf',size=30)
+    print(int(w*(h//256)))
+    im = im.resize((int(w*(256/h)),256),1)
+    print(w,h)
+    q = im.quantize(colors=5,method=2)
+    pal = (q.getpalette())
+    back = Image.new('RGBA',(int(w*(256/h))+200,256),color=(0,0,0,0))
+    d = ImageDraw.Draw(back)
+    d.rectangle([10,10,40,40],fill=(pal[0],pal[1],pal[2]))
+    d.text((50,10),rgb_to_hex((pal[0],pal[1],pal[2])),font=font)
+    d.rectangle([10,60,40,90],fill=(pal[3],pal[4],pal[5]))
+    d.text((50,60),rgb_to_hex((pal[3],pal[4],pal[5])),font=font)
+    d.rectangle([10,110,40,140],fill=(pal[6],pal[7],pal[8]))
+    d.text((50,110),rgb_to_hex((pal[6],pal[7],pal[8])),font=font)
+    d.rectangle([10,160,40,190],fill=(pal[9],pal[10],pal[11]))
+    d.text((50,160),rgb_to_hex((pal[9],pal[10],pal[11])),font=font)
+    d.rectangle([10,210,40,240],fill=(pal[12],pal[13],pal[14]))
+    d.text((50,210),rgb_to_hex((pal[12],pal[13],pal[14])),font=font)
+    back.paste(im,(200,0))
+    y = tkc.randomword(10)
+    back.save(f"bin/{y}.png", format="PNG", optimize=True)
+    return f"bin/{y}.png"
+def getrgbgraph(img):
+    def getr(R):
+        return '#%02x%02x%02x'%(R,0,0)
+    def getg(G):
+        return '#%02x%02x%02x'%(0,G,0)
+    def getb(B):
+        return '#%02x%02x%02x'%(0,0,B)
+    im = pilimagereturn(img)
+    im = im.convert('RGB')
+    dat = (im.histogram())
+    rvals = dat[0:256]
+    gvals = dat[256:512]
+    plt.figure()
+    bvals = dat[512:768]
+    axa = plt.subplot(2,2,1)
+    axa.imshow(bytes_to_np(img))
+    axa.set_title('Image')
+    axb = plt.subplot(2,2,2)
+    for i in range(0,256):
+        axb.bar(i,rvals[i],color=getr(i),alpha=0.3)
+    axb.set_title('Red Values')
+    axb.set_xlabel('Position')
+    axb.set_ylabel('Red Intensity')
+    axc = plt.subplot(2,2,3)
+    for i in range(0,256):
+        axc.bar(i,gvals[i],color=getg(i),alpha=0.3)
+    axc.set_xlabel('Position')
+    axc.set_ylabel('Green Intensity')
+    axd = plt.subplot(2,2,4)
+    for i in range(0,256):
+        axd.bar(i,bvals[i],color=getb(i),alpha=0.3)
+    axd.set_xlabel('Position')
+    axd.set_ylabel('Blue Intensity')
+    plt.tight_layout()
+    #plt.show()
+    y = tkc.randomword(10)
+    plt.savefig(f'bin/{y}.png')
+    return f'bin/{y}.png'
+def asciiart(in_b, SC=0.1, GCF=2,  bgcolor=(13,2,8)):
 
+    chars = np.asarray(list(" .'`^\,:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"))
+    font = ImageFont.load_default()
+    letter_width = font.getsize("x")[0]
+    letter_height = font.getsize("x")[1]
+    WCF = letter_height/letter_width
+    img = pilimagereturn(in_b)
+    img = img.convert('RGB')
+    widthByLetter=round(img.size[0]*SC*WCF)
+    heightByLetter = round(img.size[1]*SC)
+    S = (widthByLetter, heightByLetter)
+    img = img.resize(S)
+    img = np.sum(np.asarray(img), axis=2)
+    img -= img.min()
+    img = (1.0 - img/img.max())**GCF*(chars.size-1)
+    lines = ("\n".join( ("".join(r) for r in chars[img.astype(int)]) )).split("\n")
+    nbins = len(lines)
+    newImg_width= letter_width *widthByLetter
+    newImg_height = letter_height * heightByLetter
+    newImg = Image.new("RGBA", (newImg_width, newImg_height), bgcolor)
+    draw = ImageDraw.Draw(newImg)
+    leftpadding=0
+    y = 0
+    lineIdx=0
+    for line in lines:
+        lineIdx +=1
+        draw.text((leftpadding, y), line, (0, 255, 65), font=font)
+        y += letter_height
+    y = tkc.randomword(10)
+    newImg.save(f'bin/{y}.png')
+    return f'bin/{y}.png'
 
 def tweetgen(username, image, tezt):
     today = datetime.today()
@@ -1663,7 +1766,26 @@ async def pixel(token: str = Header(None), url: str = Header(None)):
             content={"error": "The Image manipulation had a small error"},
         )
 
+@app.post("/api/ascii",response_model=Item,responses=rdict)
+async def ascii(token: str = Header(None), url: str = Header(None)):
+    """Hackify an image by turning it into ascii chars"""
 
+    r = await checktoken(token)
+    byt = await getimg(url)
+    fn = partial(asciiart, byt)
+    loop = asyncio.get_event_loop()
+    img = await loop.run_in_executor(None, fn)
+    if isinstance(img, str):
+        return JSONResponse(
+            status_code=200,
+            content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+        )
+
+    else:
+        return JSONResponse(
+            status_code=500,
+            content={"error": "The Image manipulation had a small error"},
+        )
 @app.post("/api/deepfry", response_model=Item, responses=rdict)
 async def deepfry(token: str = Header(None), url: str = Header(None)):
     """Deepfry a gif/static image"""
@@ -1811,6 +1933,64 @@ async def charcoal(token: str = Header(None), url: str = Header(None)):
             status_code=500,
             content={"error": "The Image manipulation had a small error"},
         )
+
+@app.post("/api/colors",response_model=Item,responses=rdict)
+async def imagecolors(token: str = Header(None), url: str = Header(None)):
+    """TScans an Image and returns an image with data about colors in the image"""
+
+    r = await checktoken(token)
+    byt = await getimg(url)
+    fn = partial(top5colors, byt)
+    loop = asyncio.get_event_loop()
+    img = await loop.run_in_executor(None, fn)
+    if isinstance(img, str):
+        return JSONResponse(
+            status_code=200,
+            content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+        )
+
+    else:
+        return JSONResponse(
+            status_code=500,
+            content={"error": "The Image manipulation had a small error"},
+        )
+@app.post("/api/rgbdata",response_model=Item,responses=rdict)
+async def rgbdata(token: str = Header(None), url: str = Header(None)):
+    """TAnalyses the RGB values for an image and returns a dioramawith graphs and other imagedata"""
+
+    r = await checktoken(token)
+    byt = await getimg(url)
+    fn = partial(getrgbgraph, byt)
+    loop = asyncio.get_event_loop()
+    img = await loop.run_in_executor(None, fn)
+    if isinstance(img, str):
+        return JSONResponse(
+            status_code=200,
+            content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+        )
+
+    else:
+        return JSONResponse(
+            status_code=500,
+            content={"error": "The Image manipulation had a small error"},
+        )
+@app.post("api/qrcode")
+async def qrcodegen(token: str = Header(None),text : str = Header(None)):
+    r = await checktoken(token)
+    fn = partial(makeqr, text)
+    loop = asyncio.get_event_loop()
+    img = await loop.run_in_executor(None, fn)
+    if isinstance(img, str):
+        return JSONResponse(
+            status_code=200,
+            content={"succes": True, "url": f"http://dagpi.tk/{img}"},
+        )
+
+    else:
+        return JSONResponse(
+            status_code=500,
+            content={"error": "The Image manipulation had a small error"},
+        )
 @app.get("/api/wtp")
 async def whosethatpokemon( token: str = Header(None)):
     """Get a full whose that pokemon response"""
@@ -1924,15 +2104,14 @@ async def userstats(enhancedtoken: str = Header(None)):
     y = await checkenhcanced(enhancedtoken)
     stats = tkc.getstats()
     return JSONResponse(status_code=200,content={'data':stats})
-def custom_openapi(openapi_prefix: str = ""):
+def custom_openapi():
     if app.openapi_schema:
         return app.openapi_schema
     openapi_schema = get_openapi(
         title="Dagpi",
         version="1.0",
         description="The Number 1 Image generation api",
-        routes=app.routes,
-        openapi_prefix=openapi_prefix,
+        routes=app.routes
     )
     openapi_schema["info"]["x-logo"] = {"url": "https://dagbot-is.the-be.st/logo.png"}
     app.openapi_schema = openapi_schema
