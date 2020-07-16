@@ -8,6 +8,12 @@ from io import BytesIO
 import random
 import typing
 import qrcode
+import asyncio
+from logogame import logogame
+loop = asyncio.get_event_loop()
+loggameclass = logogame()
+makepool = loop.create_task(loggameclass.makepool())
+makepool
 import sentry_sdk
 from skimage.morphology import skeletonize,disk
 import skimage
@@ -2014,6 +2020,15 @@ async def whosethatpokemon( token: str = Header(None)):
         mondict = await loop.run_in_executor(None, fn)
     return JSONResponse(status_code=200,content={"question_image":f'https://dagpi.tk/pokemon/{rst}q.png',"answer_image":f'https://dagpi.tk/pokemon/{rst}a.png',"pokemon":mondict})
 
+
+@app.get('/api/logogame')
+async def logoguessgame(token: str = Header(None)):
+    r = await checktoken(token)
+    #try:
+    resp = await loggameclass.craftdata()
+    return JSONResponse(status_code=200,content=resp)
+    #except:
+    #    return JSONResponse(status_code=500,content={'error':'Something went wrong! We will fix it'})
 # @app.get('/api/pokemonimage')
 # async def getmon(token: str = Header(None), search:str = Header(None)):
 #     async with aiofiles.open('assets/pokemons.json',mode='r') as file:
@@ -2127,8 +2142,9 @@ async def main():
         await asyncio.sleep(60)
 
 
-loop = asyncio.get_event_loop()
+
 task = loop.create_task(main())
+
 try:
     task
 except asyncio.CancelledError:

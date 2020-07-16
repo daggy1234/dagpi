@@ -78,16 +78,16 @@ class tokenprocess(object):
         df.to_csv("tokens.csv", index=False)
         return True
 
-# y = tokenprocess()
-# stat,co = y.adduser('491174779278065689')
-# if stat == True:
-#     print('Added user',co)
-# elif stat == False:
-#     if co == 1:
-#         tok = y.gettoken('491174779278065689')
-#         print(tok)
-#     else:
-#         print('some error occured while adding the token')
+y = tokenprocess()
+stat,co = y.adduser('247292930346319872')
+if stat == True:
+    print('Added user',co)
+elif stat == False:
+    if co == 1:
+        tok = y.gettoken('491174779278065689')
+        print(tok)
+    else:
+        print('some error occured while adding the token')
 
 # #
 # y = tokenprocess()
