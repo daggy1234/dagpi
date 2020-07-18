@@ -450,21 +450,6 @@ def getsolar(image: BytesIO):
         dst_image.save(filename=f"bin/{y}.gif")
         return f"bin/{y}.gif"
 
-def getwtp(ig: BytesIO,rst):
-    im = pilimagereturn(ig)
-    ques = Image.open('assets/wtp.png')
-    ans = Image.open('assets/wtp.png')
-    w, h = im.size
-    imane = Image.new('RGBA', (w, h), color=(3, 100, 150))
-    fim = Image.composite(imane, im, mask=im)
-    ques.paste(fim, (50, 50), mask=im)
-    ans.paste(im, (50, 40), mask=im)
-    ques.save(f'pokemon/{rst}q.png')
-    ans.save(f'pokemon/{rst}a.png')
-    with open('assets/pokemons.json', 'r') as file:
-        cont = json.load(file)
-        mondict = cont[rst]
-    return (mondict)
 def getpaint(image: BytesIO):
     io = BytesIO(image)
     io.seek(0)
@@ -2001,24 +1986,13 @@ async def qrcodegen(token: str = Header(None),text : str = Header(None)):
 async def whosethatpokemon( token: str = Header(None)):
     """Get a full whose that pokemon response"""
     r = await checktoken(token)
-    rst = str((random.randint(1, 800)))
-    if len(rst) == 3:
-        r = str(rst)
-    elif len(rst) == 2:
-        r = '0' + str(rst)
-    else:
-        r = '00' + str(rst)
-    path = "/pokemon"
-    if os.path.exists(f'{rst}q.png'):
-        with open('assets/pokemons.json', 'r') as file:
-            cont = json.load(file)
-            mondict = cont[rst]
-    else:
-        print(f'https://assets.pokemon.com/assets/cms2/img/pokedex/full/{r}.png')
-        byt = await getimg(f'https://assets.pokemon.com/assets/cms2/img/pokedex/full/{r}.png')
-        fn = partial(getwtp,byt,rst)
-        mondict = await loop.run_in_executor(None, fn)
-    return JSONResponse(status_code=200,content={"question_image":f'https://dagpi.tk/pokemon/{rst}q.png',"answer_image":f'https://dagpi.tk/pokemon/{rst}a.png',"pokemon":mondict})
+    rst = str((random.randint(1, 890)))
+    with open('assets/pokemons.json', 'r') as file:
+        cont = json.load(file)
+        mondict = cont[rst]
+    qimg = f"https://logoassetsgame.s3.us-east-2.amazonaws.com/wtp/pokemon/{rst}q.png"
+    aimg = f"https://logoassetsgame.s3.us-east-2.amazonaws.com/wtp/pokemon/{rst}a.png"
+    return JSONResponse(status_code=200,content={"question_image":qimg,"answer_image":aimg,"pokemon":mondict})
 
 
 @app.get('/api/logogame')
