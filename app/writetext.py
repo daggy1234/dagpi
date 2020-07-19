@@ -1,6 +1,10 @@
 from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
+# Requirement: PIL <http://www.pythonware.com/products/pil/>
+# Copyright 2011 Álvaro Justen [alvarojusten at gmail dot com]
+# License: GPL <http://www.gnu.org/copyleft/gpl.html>
 
+#With modifications by Daggy1234 (dagggy@daggy.tech)
 
 class writetext(object):
     def __init__(self, im: Image):
