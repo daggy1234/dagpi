@@ -1,6 +1,0 @@
-Wand==0.6.1
-aiofiles
-tabulate
-qrcode
-sentry_sdk
-aiosqlite

@@ -1,0 +1,31 @@
+name: Feature Request
+about: Create a feature request for dagpi
+title: ''
+labels: 'template: story'
+issue_body: true
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to file a feature request! Please fill out this form as completely as possible.
+  - type: input
+    attributes:
+      label: What service is the feature for?
+      description: example dagpi-image
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Describe the feature you'd like to request
+      description: A clear and concise description of what you want and what your use case is.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Any exmples, real world instances of the feature being implemented?
+      description: It greatly helps us understand the feature in detail
+  - type: check
+    attributes:
+      label: Describe alternatives you've considered
+      description: A clear and concise description of any alternative solutions or features you've considered.
+    validations:
+      required: true

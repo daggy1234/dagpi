@@ -1,18 +1,82 @@
-# Dagbot API
+# Dagpi
 
-### http://dagpi.tk/api
+A fast, and easy to use API. Enjoy powerful image manipulation, high quality datasets with reliability and security.
 
-[![Build Status](https://travis-ci.com/Daggy1234/dockerapi.svg?token=n5es5PKmozY223YRQS5s&branch=master)](https://travis-ci.com/Daggy1234/dockerapi) [![server](https://img.shields.io/discord/491175207122370581)](https://discord.gg/5Y2ryNq) [![python](https://img.shields.io/static/v1?label=python&message=3.8&color=yellow)](https://www.python.org/downloads/release/python-381/) [![Docker](https://img.shields.io/static/v1?label=Run%20On&message=Docker&color=informational)](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker) [![License](https://img.shields.io/badge/License-Apache%202.0-red.svg)](https://opensource.org/licenses/Apache-2.0)
+## About
+
+This repo is a central hub for all of the dagpi repo's. It houses info like the Api schmea, as well as a link to other repo's and explanations about their functions.
+
+## Repo's
+
+In a nutshell Dagpi consists of the following repos
+
+### Dagpi-Image
+
+Source: [dagpi-image](https://github.com/daggy1234/dagpi-image)
+
+This is the core of dagpi's image manipulation system. This microservice houses all of the code that takes in Image URL's and outputs processed images as files. Users can leverage a wide varity of filters, effects and memes. 
+
+### Dagpi-Data
+
+Source: [dagpi-data](https://github.com/daggy1234/dagpi-data)
+
+This is used by dagpi to serve pre-prepared json datasets with a high speed service. It also takes advantage of powerful libraries to allow text searcg for certain datasets.
 
 
-`The api for the number 1 discord meme bot. Built on FastAPI, the image manipulation api uses ImageMagick and Pillow to quickly manipulate both gifs and images.`
+### Dagpi-Auth
 
+Source: [dagpi-auth](https://github.com/daggy1234/dagpi-auth)
 
+The central brain of dagpi, all token access, authorization and stat collection/processing is done by dagpi-auth. It connects to the postgres db's and interfaces, to provide a restful management for each component of the dagpi infra.
 
+### Dagpi-Dashboard
 
+Source: [dagpi-dashboard](https://github.com/daggy1234/dagpi-dashboard)
 
+Every app needs a nice UI so users and devs alike can enjoy using our service. In order to alleviate troublesome managment, dagpi-dashboard creates an asthetic and responsive dashboard with advanced metric visualization.
 
+### Dagpi-Central
 
+Source: [dagpi-central](https://github.com/daggy1234/dagpi-central)
 
+Rather than running sensitive stuff in our website, or exposing the critical dagpi-auth to the world, dagpi-central wraps dagpi-auth along with project management and admin features for dagpi-stadd.
 
+## Deployment
 
+In order to minimize cost dagpi uses a powerful VPS running linux with docker engine. However, to distribute load in case of failure, other key infra runs everywhere.
+
+Mentioned below is infra that does not run on the main server
+
+- Website is deployed
+- Dagpi-central deployed for availability
+- Dagpi-Cdn (AWS s3)
+- Dagpi-Reset (AWS lambda)
+- Dagpi-Central-db (AWS RDS)
+- Dagpi-Billing-Db (AWS dynamo)
+
+Server Items, are all run using docker and networked via docker-compose
+
+- Dagpi-auth
+- dagpi-data
+- dagpi-image
+- postgresql (auth)
+- timescale (statdb)
+- nginx
+- cadvisor
+- prometheus
+- grafana
+- postgres-exporter
+
+For a guide on how to deploy, its coming soon!
+
+## API Blueprint
+
+This repo contains the Api blueprint, a manual schema to dagpi. Feel free to PR changes.
+
+## API Issues
+
+This repo can be used to communicate/ suggest issues for dagpi
+
+## License
+
+All righst reserved.
