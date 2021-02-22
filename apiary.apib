@@ -1,0 +1,3566 @@
+FORMAT: 1A
+HOST: https://api.dagpi.xyz
+
+# Dagpi 
+
+A hyper fast and powerful Image Manipulation/ Data Serving api written with a variety of languages to maximise performance.
+
+## Tokens
+
+Dagpi Relies on Secure Tokens to allow you to autheticate with the API. In order to get a token, begin by visiting the dashboard at 
+https://dagpi.xyz/dashboard
+
+**yes the dashboard has a dark mode click on the moon**
+
+<img src="https://i.imgur.com/lVxfkof.png" />
+
+In the following screen Login with your discord account.
+
+<img src="https://i.imgur.com/3zy1CMY.png" />
+
+After Signing In You will be prompted to `Create App` CLick on that and fll out the following form
+
+<img src="https://i.imgur.com/G7qQDfu.png" />
+
+Thats it! Wait for your app to be approved and soon, when it's apprived you will get a dashoard like this with all the info!
+
+<img src="https://i.imgur.com/RvBr728.png" />
+
+## Code
+
+All of the dagpi code is open source. We should have a deployment guide out soon but you can simply use the Github Repos for now
+
+* https://github.com/Daggy1234/dagpi
+* https://github.com/Daggy1234/dagpi-dashboard
+* https://github.com/Daggy1234/dagpi-data
+* https://github.com/Daggy1234/dagpi-auth
+* https://github.com/Daggy1234/dagpi-image
+
+
+## Wrappers
+
+If making manual API requests is a pain, use some API wrappers that abstract that logic. The website homepage has a wrappers page and our discord has a channel with all the wrappers present
+
+## Misc
+
+You can read our detailed terms at the Following
+
+## Terms & Conditions
+
+https://dagpi.xyz/terms
+
+## Privacy Policy
+
+https://dagpi.xyz/privacy
+
+## Contact
+
+email: contact@dagpi.xyz
+Discord: Daggy#1234
+
+## Chat
+
+We have a vbrant discord community you can join for help with the api, updates and much more
+
+[![Discord Banner 3](https://discordapp.com/api/guilds/491175207122370581/widget.png?style=banner3)](https://server.daggy.tech)
+
+
+# Group Data API
+
+A powerful tool to server high quality Datasets
+
+## Whose That Pokemon [GET /data/wtp]
+
+Allows you to get a Dagpi WTP object
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
++ Request
+
+    + Headers
+    
+            Authorization: token
+
++ Response 200 (application/json)
+
+        {
+            "Data": {
+                "Type": [
+                    "steel",
+                    "ghost"
+                ],
+                "abilities": [
+                    "stance change"
+                ],
+                "ascii": "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@,*.@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@:,**@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@%*:**?@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@%@**.S@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@.@***+S@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@:::#.SSS@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@S*@@@@S:,**S++.@@@@%:@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@:#*:@@:::**SSS+%?***@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@%***:@@::**.SSS+?+SS+@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@#%%SS...,@...*..%?SS%??S@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@??%?*@@,S.%S....S??++S+#@?...?@@@@@@@@@@@@@@@@@\n@@@@@@@@@@%%%%@@@@@@@@#*++#?%++*:@@@@@@@@.....@@@@@@@@@@@@@@\n@@@@@@@@?%%@@@@@@@@@@@.,******::?@@@@@@@@@@@.%..@@@@@@@@@@@@\n@@@@@@@%%%#@@@@@@@@@@@%:******#:@@@@@@@@@%:#:::::::.@@@@@@@@\n@@@@@@....?@@@@@@@@@@@,*******,,@@@@@@.*::*:::.#:::*:::@@@@@\n@@@@@?.....@@@@@@@@@@@:?******:,@@@@?***::::#...#:,,,#***@@@\n@@@@@......@@@@@@@@@@,::******,@@@@S**::*:#.::::#::,:::.**@@\n@@@@..%.%..@@@@@@@@@@*:***@@@@@,@@...:::::?:#%%::#::::::S..@\n@@@*....++.#@@@@@@@@@:.@@@@@@@@,@@..?:.::?%**.S**::::::::..:\n@@@....%.S*.@@@@@@@@.@@@@@@@**:,*@.#.+?**S..#..*****:+***++:\n@@@.....****S@@@@@@@@@@@@***::.,,@...%?+#..+#++#%?%++%**?..,\n@@+******.***@@@@@@@@*****:::::,,,@.+%..?.S+*?+++..+.+++?.S@\n@@***.***#.***@@@@+@,***:::::::?,,?,++.+%******.?.%.......@@\n@%.**%***?****.@@S,:::::::::::::,,,@@S.++.****:**?......@@@@\n@****.****:.****@@.,,:::::::::,,,:.,@@@*...****....S+%@@@@@@\n.****+**..,..*@@@@@.,,::::::S,,,+@@@@@@@@@@@%#.%%@@@@@@@@@@@\n@@,*.?:,@@@@@@@@@@@%,,,,,:S,,,,,,@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@:,,,,,+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@%,,,,,?@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@?@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+                "height": 1.7000000476837158,
+                "id": 681.0,
+                "link": "http://pokemondb.net/pokedex/aegislash",
+                "name": "Aegislash",
+                "weight": 116.80000305175781
+            },
+            "answer": "https://logoassetsgame.s3.us-east-2.amazonaws.com/wtp/pokemon/646a.png",
+            "question": "https://logoassetsgame.s3.us-east-2.amazonaws.com/wtp/pokemon/646q.png"
+        }
+
++ Response 403 (application/json)
+
+            {
+            "error: "Uauthorized"
+            }
+
++ Response 429 (application/json)
+
+            {
+            "error: "Ratelimited"
+            }
+
++ Response 500 (application/json)
+
+            {
+            "error: "Internal Server Error"
+            }
+            
+## Roast  [GET /data/roast]
+
+Allows you to get a Roast
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
++ Request
+
+    + Headers
+    
+            Authorization: token
+
++ Response 200 (application/json)
+
+        {
+            "roast": "If you really want to know about mistakes, you should ask your parents."
+        }
+
++ Response 403 (application/json)
+
+            {
+            "error: "Uauthorized"
+            }
+
++ Response 429 (application/json)
+
+            {
+            "error: "Ratelimited"
+            }
+
++ Response 500 (application/json)
+
+            {
+            "error: "Internal Server Error"
+            }
+
+##  Joke  [GET /data/joke]
+
+gets a nice edgy Joke. Might be Offensive/NSFW.
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
++ Request
+
+    + Headers
+    
+            Authorization: token
+
++ Response 200 (application/json)
+
+        {
+            "id": "228137",
+            "joke": "Why did Jesus quit playing ice hockey? He kept getting nailed to the boards."
+        }
+
++ Response 403 (application/json)
+
+            {
+            "error: "Uauthorized"
+            }
+
++ Response 429 (application/json)
+
+            {
+            "error: "Ratelimited"
+            }
+
++ Response 500 (application/json)
+
+            {
+            "error: "Internal Server Error"
+            }
+
+
+##  Fact  [GET /data/fact]
+
+Get a random fun fact.
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
++ Request
+
+    + Headers
+    
+            Authorization: token
+
++ Response 200 (application/json)
+
+        
+            {
+            "fact":"Chocolate can kill dogs; it directly affects their heart and nervous system."
+            }
+
++ Response 403 (application/json)
+
+            {
+            "error: "Uauthorized"
+            }
+
++ Response 429 (application/json)
+
+            {
+            "error: "Ratelimited"
+            }
+
++ Response 500 (application/json)
+
+            {
+            "error: "Internal Server Error"
+            }
+
+
+##  8ball [GET /data/8ball]
+
+Get a random 8ball response. 
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
++ Request
+
+    + Headers
+    
+            Authorization: token
+
++ Response 200 (application/json)
+
+        
+            {
+            "response":"My reply is no."
+            }
+
++ Response 403 (application/json)
+
+            {
+            "error: "Uauthorized"
+            }
+
++ Response 429 (application/json)
+
+            {
+            "error: "Ratelimited"
+            }
+
++ Response 500 (application/json)
+
+            {
+            "error: "Internal Server Error"
+            }
+
+
+##  YoMama  [GET /data/yomama]
+
+gets a nice Yomama Joke. Might be Offensive/NSFW.
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
++ Request
+
+    + Headers
+    
+            Authorization: token
+
++ Response 200 (application/json)
+
+        {
+            "description": "Yo mama is so fat that she has two watches one for each time zone she's in"
+        }
+
++ Response 403 (application/json)
+
+            {
+            "error: "Uauthorized"
+            }
+
++ Response 429 (application/json)
+
+            {
+            "error: "Ratelimited"
+            }
+
++ Response 500 (application/json)
+
+            {
+            "error: "Internal Server Error"
+            }
+
+
+## Random Waifu [GET /data/waifu]
+
+Random japanese Waifu.
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
++ Request
+
+    + Headers
+    
+            Authorization: token
+
++ Response 200 (application/json)
+
+        {
+        "age": "",
+        "appearances": [
+            {
+                "airing_end": null,
+                "airing_start": null,
+                "description": "",
+                "display_picture": "",
+                "episode_count": 26,
+                "name": "Ouran Koukou Host Club",
+                "original_name": null,
+                "release": null,
+                "romaji_name": null,
+                "slug": "ouran-koukou-host-club",
+                "studio": null
+            }
+            ],
+        "birthday_day": "0",
+        "birthday_month": "",
+        "birthday_year": "",
+        "blood_type": "",
+        "bust": "0.00",
+        "creator": {
+            "id": 19580,
+            "name": "heat_days"
+        },
+        "description": "The Host Club's (self-proclaimed) manageress who tends to be very loud and outspoken. She grew up in France before she came to attend Ouran, right after she saw Kyoya in a picture her dad gave her. Renge first came across the Host Club by maintaining the belief she was Kyoya's fiancée despite never having met him in person. This is due to her love of visual novel-type video games to a point that she sometimes confuses them with real life. Her fascination with Kyoya originated from her obsession with one such dating game. Still, her experience with dating sims causes her to be more aware of character development and a thickening plot. Tamaki initially allowed Renge to become the host club's manager in hopes that she would be a female friend to Haruhi and inspire her to act and dress more feminine.",
+        "display_picture": "https://thicc.mywaifulist.moe/waifus/10401/ac3a9c41b18ac17d79e8b7ca36100e3a30a1f9d8d2a551bd15a5fd5e0e9dee03_thumb.jpeg",
+        "height": "0.00",
+        "hip": "0.00",
+        "husbando": false,
+        "id": 10401,
+        "like_rank": 8919,
+        "likes": 21,
+        "name": "Renge Houshakuji",
+        "nsfw": false,
+        "origin": "",
+        "original_name": "",
+        "popularity_rank": 6776,
+        "romaji_name": "",
+        "series": {
+            "airing_end": null,
+            "airing_start": null,
+            "description": "",
+            "display_picture": "",
+            "episode_count": 26,
+            "name": "Ouran Koukou Host Club",
+            "original_name": null,
+            "release": null,
+            "romaji_name": null,
+            "slug": "ouran-koukou-host-club",
+            "studio": null
+        },
+        "slug": "renge-houshakuji",
+        "tags": [],
+        "trash": 21,
+        "trash_rank": 3337,
+        "url": "https://www.mywaifulist.moe/waifu/renge-houshakuji",
+        "waist": "0.00",
+        "weight": "0.00"
+        }
+
++ Response 403 (application/json)
+
+            {
+            "error: "Uauthorized"
+            }
+
++ Response 429 (application/json)
+
+            {
+            "error: "Ratelimited"
+            }
+
++ Response 500 (application/json)
+
+            {
+            "error: "Internal Server Error"
+            }
+
+### Waifu Saerch [GET /{waifu}]
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
++ Request
+
+    + Headers
+    
+            Authorization: token
+            
+    + Parameters
+        
+        + waifu: Stella Hoshii (string, required) - waifu to search
+
++ Response 200 (application/json)
+
+        {
+          "age": 0,
+          "appearances": [
+            {
+              "airing_end": null,
+              "airing_start": null,
+              "description": "VA-11 HALL-A: Cyberpunk Bartender Action (also sometimes written as Valhalla) is an indie bartender simulation video game with visual novel elements as well as cyberpunk and anime-inspired visuals, developed by Venezuelan studio Sukeban Games and published by Ysbryd Games for Microsoft Windows, OS X, and Linux on June 21, 2016. The PlayStation Vita port was developed by Wolfgame and published by Limited Run Games. The game puts the player in the role of a bartender at the eponymous VA-11 HALL-A, a small bar in a dystopian downtown which is said to attract the \"most fascinating\" of people. \r\n\r\nThe gameplay consists of players making and serving drinks to bar attendees whilst listening to the stories and experiences of said characters.",
+              "display_picture": "https://thicc.mywaifulist.moe/series/983/3d7282de3e82f88aa35b61f7d93f0df2c3d062ea169a4a71b41e8203f8462ed2.jpeg",
+              "episode_count": null,
+              "name": "VA-11 Hall-A: Cyberpunk Bartender Action",
+              "original_name": null,
+              "release": null,
+              "romaji_name": null,
+              "slug": "va-11-hall-a-cyberpunk-bartender-action",
+              "studio": null
+            }
+          ],
+          "birthday_day": "25",
+          "birthday_month": "December",
+          "birthday_year": "",
+          "blood_type": "",
+          "bust": "0.00",
+          "creator": {
+            "id": 23563,
+            "name": "bestwaifu"
+          },
+          "description": "Stella Hoshii is the daughter of wealthy parents and a regular customer at VA-11 Hall-A. She is also a Cat Boomer and a long time friend of Sei Asagiri.\r\n\r\nShe often acts in a prideful manner, shown when initially meeting her, and when Sei isn't around. However, she's a kind person at heart, as shown during Mega-Christmas when she buys a large amount of gifts for the children in her family.\r\n\r\nShe also hides her true feelings under her usual haughty demeanor, as evidenced when when Sei was heavily injured at the Apollo Bank incident. It is also evidenced in a more lighthearted manner when she often tries to hide her status as a fan of *Kira* Miki's music, as shown from her reaction upon seeing *Kira* Miki's signed glass.",
+          "display_picture": "https://thicc.mywaifulist.moe/waifus/16348/180b66172ded878a374ae54ee3c4c219dae45d13215a17670d93268959f7df61_thumb.png",
+          "height": "0.00",
+          "hip": "0.00",
+          "husbando": false,
+          "id": 16348,
+          "like_rank": 6454,
+          "likes": 34,
+          "name": "Stella Hoshii",
+          "nsfw": false,
+          "origin": "",
+          "original_name": "",
+          "popularity_rank": 7834,
+          "romaji_name": "",
+          "series": {
+            "airing_end": null,
+            "airing_start": null,
+            "description": "VA-11 HALL-A: Cyberpunk Bartender Action (also sometimes written as Valhalla) is an indie bartender simulation video game with visual novel elements as well as cyberpunk and anime-inspired visuals, developed by Venezuelan studio Sukeban Games and published by Ysbryd Games for Microsoft Windows, OS X, and Linux on June 21, 2016. The PlayStation Vita port was developed by Wolfgame and published by Limited Run Games. The game puts the player in the role of a bartender at the eponymous VA-11 HALL-A, a small bar in a dystopian downtown which is said to attract the \"most fascinating\" of people. \r\n\r\nThe gameplay consists of players making and serving drinks to bar attendees whilst listening to the stories and experiences of said characters.",
+            "display_picture": "https://thicc.mywaifulist.moe/series/983/3d7282de3e82f88aa35b61f7d93f0df2c3d062ea169a4a71b41e8203f8462ed2.jpeg",
+            "episode_count": null,
+            "name": "VA-11 Hall-A: Cyberpunk Bartender Action",
+            "original_name": null,
+            "release": null,
+            "romaji_name": null,
+            "slug": "va-11-hall-a-cyberpunk-bartender-action",
+            "studio": null
+          },
+          "slug": "stella-hoshii",
+          "tags": [],
+          "trash": 1,
+          "trash_rank": 21608,
+          "url": "https://www.mywaifulist.moe/waifu/stella-hoshii",
+          "waist": "0.00",
+          "weight": "0.00"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "alternatives": [
+                "stella-hoshii"
+            ]
+        }
+
++ Response 403 (application/json)
+
+            {
+            "error: "Uauthorized"
+            }
+
++ Response 429 (application/json)
+
+            {
+            "error: "Ratelimited"
+            }
+
++ Response 500 (application/json)
+
+            {
+            "error: "Internal Server Error"
+            }
+
+##  Pickup Line  [GET /data/pickupline]
+
+Gets a Pickup line. Might be Offensive/NSFW.
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
++ Request
+
+    + Headers
+    
+            Authorization: token
+
++ Response 200 (application/json)
+
+        {
+            "category": "cheesy/corny",
+            "joke": "Are you an interior decorator? ‘Cause when I saw you, the room became beautiful."
+        }
+
++ Response 403 (application/json)
+
+        {
+        "error: "Uauthorized"
+        }
+
++ Response 429 (application/json)
+
+            {
+            "error: "Ratelimited"
+            }
+
++ Response 500 (application/json)
+
+            {
+            "error: "Internal Server Error"
+            }
+
+
+
+##  Headline [GET /data/headline]
+
+Gets a headline. Can be either fake or real.
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
++ Request
+
+    + Headers
+    
+            Authorization: token
+
++ Response 200 (application/json)
+
+        {
+            "text":"Louisiana parish bans saggy pants; $50 fine for first offense",
+            "fake":true
+        }
+
++ Response 403 (application/json)
+
+        {
+        "error: "Uauthorized"
+        }
+
++ Response 429 (application/json)
+
+            {
+            "error: "Ratelimited"
+            }
+
++ Response 500 (application/json)
+
+            {
+            "error: "Internal Server Error"
+            }
+
+
+##  Guess The Logo  [GET /data/logo]
+
+Random Logo Game. Gets logo Json. 2 Formats/
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
++ Request
+
+    + Headers
+    
+            Authorization: token
+
++ Response 200 (application/json)
+
+        {
+        "answer": "https://logoassetsgame.s3.us-east-2.amazonaws.com/logogame/logos/l_d_barclays_o.png",
+        "brand": "Barclays",
+        "clue": "British multinational banking and financial services company.|Operations in retail, wholesale and investment banking, wealth management, mortgage lending.",
+        "easy": true,
+        "hint": "_ar__a_s",
+        "question": "https://logoassetsgame.s3.us-east-2.amazonaws.com/logogame/logos/l_d_barclays.png",
+        "wiki_url": "https://en.wikipedia.org/wiki/Barclays"
+        }
+
++ Response 403 (application/json)
+
+        {
+        "error: "Uauthorized"
+        }
+
++ Response 429 (application/json)
+
+            {
+            "error: "Ratelimited"
+            }
+
++ Response 500 (application/json)
+
+            {
+            "error: "Internal Server Error"
+            }
+
+##  Flag  [GET /data/flag]
+
+Random Logo Game. Gets logo Json. 2 Formats/
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
++ Request
+
+    + Headers
+    
+            Authorization: token
+
++ Response 200 (application/json)
+    {
+            "Data": {
+                "altSpellings": [
+                  "DK",
+                  "Danmark",
+                  "Kingdom of Denmark",
+                  "Kongeriget Danmark"
+                ],
+                "area": 43094.0,
+                "borders": [
+                  "DEU"
+                ],
+                "callingCode": [
+                  "45"
+                ],
+                "capital": "Copenhagen",
+                "cca2": "DK",
+                "cca3": "DNK",
+                "ccn3": "208",
+                "currency": [
+                  "DKK"
+                ],
+                "denonym": null,
+                "landlocked": false,
+                "languages": {
+                  "dan": "Danish"
+                },
+                "latlng": [
+                  56.0,
+                  10.0
+                ],
+                "name": {
+                  "common": "Denmark",
+                  "native": {
+                    "dan": {
+                      "common": "Danmark",
+                      "official": "Kongeriget Danmark"
+                    }
+                  },
+                  "official": "Kingdom of Denmark"
+                },
+                "region": "Europe",
+                "subregion": "Northern Europe",
+                "tld": [
+                  ".dk"
+                ],
+                "translations": {
+                  "cym": {
+                    "common": "Denmarc",
+                    "official": "Teyrnas Denmarc"
+                  },
+                  "deu": {
+                    "common": "Dänemark",
+                    "official": "Königreich Dänemark"
+                  },
+                  "fin": {
+                    "common": "Tanska",
+                    "official": "Tanskan kuningaskunta"
+                  },
+                  "fra": {
+                    "common": "Danemark",
+                    "official": "Royaume du Danemark"
+                  },
+                  "hrv": {
+                    "common": "Danska",
+                    "official": "Kraljevina Danska"
+                  },
+                  "ita": {
+                    "common": "Danimarca",
+                    "official": "Regno di Danimarca"
+                  },
+                  "jpn": {
+                    "common": "デンマーク",
+                    "official": "デンマーク王国"
+                  },
+                  "nld": {
+                    "common": "Denemarken",
+                    "official": "Koninkrijk Denemarken"
+                  },
+                  "por": {
+                    "common": "Dinamarca",
+                    "official": "Reino da Dinamarca"
+                  },
+                  "rus": {
+                    "common": "Дания",
+                    "official": "Королевство Дания"
+                  },
+                  "slk": {
+                    "common": "Dánsko",
+                    "official": "Dánske kráľovstvo"
+                  },
+                  "spa": {
+                    "common": "Dinamarca",
+                    "official": "Reino de Dinamarca"
+                  },
+                  "zho": {
+                    "common": "丹麦",
+                    "official": "丹麦王国"
+                  }
+                }
+          },
+          "flag": "https://logoassetsgame.s3.us-east-2.amazonaws.com/flags/denmark.png"
+        }
++ Response 403 (application/json)
+
+        {
+        "error: "Uauthorized"
+        }
+
++ Response 429 (application/json)
+
+            {
+            "error: "Ratelimited"
+            }
+
++ Response 500 (application/json)
+
+            {
+            "error: "Internal Server Error"
+            }
+
+# Group Images API 
+
+Powerful and fast Image Manipulation
+
+## Pixel [GET /image/pixel/{?url}]
+
+
+Allows you to pixelate an Image
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Colors [GET /image/colors/{?url}]
+
+
+Allows you to get an Image with the colors prsent in the image
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
+    
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## America [GET /image/america/{?url}]
+
+Let the star spangled banner of the free and the brave soar.
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/gif)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Communism [GET /image/communism/{?url}]
+
+Support the soviet union comrade. Let the red flag fly
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/gif)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+
+## Triggered [GET /image/triggered/{?url}]
+
+
+Allows you to get a triggered gif
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/gif)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Wasted [GET /image/wasted/{?url}]
+
+
+Allows you to get an Image with GTA V Wasted screen
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)
++ Response 403 (application/json) 
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Invert [GET /image/invert/{?url}]
+
+
+Allows you to get an Image with an Inverted color effect
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+
+## Sobel [GET /image/sobel/{?url}]
+
+
+Allows you to get an Image with the sobel effect
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Hog [GET /image/hog/{?url}]
+
+
+histogram of Oriented gradients for an Image
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Triangle [GET /image/triangle/{?url}]
+
+
+cool triangle effect for an image
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+        
+
+## Blur [GET /image/blur/{?url}]
+
+Blur an Image
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## RGB [GET /image/rgb/{?url}]
+
+
+get an RGB graph of an Image's colors
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Angel [GET /image/angel/{?url}]
+
+Image on the ANgels face
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Satan [GET /image/satan/{?url}]
+
+Put an Image on the devil
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Delete [GET /image/delete/{?url}]
+
+Deletre some bad Image
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Fedora [GET /image/fedora/{?url}]
+
+Tips fedora in appreciation . Perry The platypus.
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Hitler [GET /image/hitler/{?url}]
+
+?????
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Wanted [GET /image/wanted/{?url}]
+
+Wanted poster of an Image
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
+## Stringify [GET /image/stringify/{?url}]
+
+Turn your image into a ball of yarn
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
+## Mosiac [GET /image/mosiac/{?url}{?pixels}]
+
+Turn an image into a roman mosiac
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+    
+    + pixels: 16 (optional,int) - The size of each pixel block in the mosiac
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+## SithLord [GET /image/sith/{?url}]
+
+Put an Image on the `Laughs in Sithlord` meme
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Jail [GET /image/jail/{?url}]
+
+Put an image behind bars
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Pride [GET /image/pride/{?url}{?flag}]
+
+Flag of your choice over an Image!
+
+Avaialable Choices:
+
+- asexual
+- bisexual
+- gay
+- genderfluid
+- genderqueer
+- intersex
+- lesbian
+- nonbinary
+- progress
+- pan
+- trans
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+    + flag: bisexual (required, string) - The flag of choice
+         
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Gay [GET /image/gay/{?url}]
+
+Pride falg over an Image!
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Trash [GET /image/trash/{?url}]
+
+Image is Trash
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Deepfry [GET /image/deepfry/{?url}]
+
+Deepfry an Image
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Ascii [GET /image/ascii/{?url}]
+
+Cool hackerman effect for an image
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Charcoal [GET /image/charcoal/{?url}]
+
+Image ino a charcoal drawing
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Posterize [GET /image/poster/{?url}]
+
+Posterizes an image
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Sepia [GET /image/sepia/{?url}]
+
+Sepia Tone an image
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Swirl [GET /image/swirl/{?url}]
+
+Swirl an Image
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Paint [GET /image/paint/{?url}]
+
+Turn an image into art
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Night [GET /image/night/{?url}]
+
+turn an day into night
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Rainbow [GET /image/rainbow/{?url}]
+
+Some trippy light effects
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+        
+## Magik [GET /image/magik/{?url}]
+
+The much loved magik endpoint
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+        
+## Five Guys One Girl [GET /image/5g1g/{?url}{?url2}]
+
+The meme
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg
+    + url2: https://picsum.photos/400/300 (required, string) -  The Url for the second image. Png/jpeg
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Why are you gay [GET /image/whyareyougay/{?url}{?url2}]
+
+The meme
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg
+    + url2: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.iconfinder.com%2Ficons%2F4373196%2Fdiscord_logo_logos_icon&psig=AOvVaw19o4xmFv8Ca-yEJ-anzFrK&ust=1606647414383000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjTpJaKpe0CFQAAAAAdAAAAABAD (required, string) -  The Url for the second image. Png/jpeg/gif
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
+
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Obama [GET /image/obama/{?url}{?url2}]
+
+The meme
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg
+    + url2: https://picsum.photos/400/300 (required, string) -  The Url for the second image. Png/jpeg
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Tweet [GET /image/tweet/{?url}{?username}{?text}]
+
+The meme
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg
+    + username:  Daggy1234 (required, string) -  The name of the user who'sgetting tweeted
+    + text: I like twwting about dagpi. Its a pretty cool Api ngl. (required, string) - The text for the tweet
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+## Discord [GET /image/yt/{?url}{?username}{?text}{?dark}]
+
+Generate realistic discord messages (Dark Mode)
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg
+    + username: Daggy1234 (required, string) -  The name of the user who'sgetting tweeted
+    + text: I like youtube. Making Yt comments is very cool. (required, string) - The text for the tweet
+    + dark: true (optional, boolean) - wether or not to use discord dark mode
+        + Default: true
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Discord [GET /image/discord/{?url}{?username}{?text}{?dark}]
+
+Generate realistic discord messages (Dark Mode)
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg
+    + username: Daggy1234 (required, string) -  The name of the user who'sgetting tweeted
+    + text: I use discord actively. Its a pretty nice chat platform with VoIP. (required, string) - The text for the tweet
+    + dark: true (optional,boolean) - wether or not to use discord dark mode
+        + Default: dark
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Retromeme [GET /image/retromeme/{?url}{?top_text}{?bottom_text}]
+
+The good old memes. Generated
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg
+    + top_text: TOP TEXT (required, string) - The top text for the meme.
+    + bottom_text: BOTTOM TEXT (required, string) - The bottom text for the meme
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+## Motivational [GET /image/motiv/{?url}{?top_text}{?bottom_text}]
+
+The black bacground with top and bottom motivational text.
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg
+    + top_text: Motivational (required, string) - The top text for the meme.
+    + bottom_text: I am aldready inspired (required, string) - The bottom text for the meme
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+
+
+
+## Captcha [GET /image/captcha/{?url}{?text}]
+
+Captcha v3 Image mockup
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
+    + text: Traffic Light (required, string) - Captcha text
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 200 (image/gif)  
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
+        
+## Modernmeme [GET /image/retromeme/{?url}{?text}]
+
+TA modern meme generation system that allows reddit ready memes with just one endpoint
+
+#### Headers
+| Header         | Value        |
+| :------------- | -----------: |
+| Authorization  | Token        |
+
+
+
++ Parameters
+    
+    + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg
+    + text: When your homie says some wild shit (required, string) - The top text for the meme.
+
++ Request
+
+    
+    + Headers
+    
+            Authorization: token
+            
++ Response 200 (image/png)
++ Response 403 (application/json)
+
+        {
+            "message": "Unauthorized"
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "message": "Your ImageUrl is badly frames"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Unable to connect to image url within timeout"
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Unable to process the image due to an Error"
+        }
+
++ Response 413 (application/json)
+
+        {
+            "message": "Image supplied was too large to be processed"
+        }
+
++ Response 415 (application/json)
+
+        {
+            "message": "File found was not of the Appropriate image type"
+        }
