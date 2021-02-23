@@ -4,9 +4,9 @@ A fast, and easy to use API. Enjoy powerful image manipulation, high quality dat
 
 ## About
 
-This repo is a central hub for all of the dagpi repo's. It houses info like the Api schmea, as well as a link to other repo's and explanations about their functions.
+This repo is a central hub for all of the dagpi repos. It houses info like the API schmea, as well as a link to other repo's and explanations about their functions.
 
-## Repo's
+## Repos
 
 In a nutshell Dagpi consists of the following repos
 
@@ -20,7 +20,7 @@ This is the core of dagpi's image manipulation system. This microservice houses 
 
 Source: [dagpi-data](https://github.com/daggy1234/dagpi-data)
 
-This is used by dagpi to serve pre-prepared json datasets with a high speed service. It also takes advantage of powerful libraries to allow text searcg for certain datasets.
+This is used by dagpi to serve pre-prepared json datasets with a high speed service. It also takes advantage of powerful libraries to allow text search for certain datasets.
 
 
 ### Dagpi-Auth
@@ -69,21 +69,9 @@ Server Items, are all run using docker and networked via docker-compose
 
 For a guide on how to deploy, its coming soon!
 
-## External Services
-
-In order to help with key debugging, as well as insight into the everyday functioning of the app, the followinng services are used
-
-- sentry (errors)
-- Stripe (payments)
-- Paypal (payments)
-- Discord (oauth2)
-- Google Analytics
-- Cloudflare
-- hetrixtools (uptime)
-
 ## API Blueprint
 
-This repo contains the Api blueprint, a manual schema to dagpi. Feel free to PR changes.
+This repo contains the API blueprint, a manual schema to dagpi. Feel free to PR changes.
 
 ## API Issues
 
@@ -91,4 +79,4 @@ This repo can be used to communicate/ suggest issues for dagpi
 
 ## License
 
-All righst reserved.
+All rights reserved.
