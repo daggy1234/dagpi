@@ -69,6 +69,18 @@ Server Items, are all run using docker and networked via docker-compose
 
 For a guide on how to deploy, its coming soon!
 
+## External Services
+
+In order to help with key debugging, as well as insight into the everyday functioning of the app, the followinng services are used
+
+- sentry (errors)
+- Stripe (payments)
+- Paypal (payments)
+- Discord (oauth2)
+- Google Analytics
+- Cloudflare
+- hetrixtools (uptime)
+
 ## API Blueprint
 
 This repo contains the Api blueprint, a manual schema to dagpi. Feel free to PR changes.
