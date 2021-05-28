@@ -41,18 +41,27 @@ Source: [dagpi-central](https://github.com/daggy1234/dagpi-central)
 
 Rather than running sensitive stuff in our website, or exposing the critical dagpi-auth to the world, dagpi-central wraps dagpi-auth along with project management and admin features for dagpi-stadd.
 
+### Dagpi-Cli
+
+Source: [dagpi-central](https://github.com/daggy1234/dagpi-cli)
+
+A command line interface for managing your dagpi app. Built in rust and easy to use.
+
 ## Deployment
 
 In order to minimize cost dagpi uses a powerful VPS running linux with docker engine. However, to distribute load in case of failure, other key infra runs everywhere.
 
 Mentioned below is infra that does not run on the main server
 
-- Website is deployed
+- Website is deployed on vercel
 - Dagpi-central deployed for availability
-- Dagpi-Cdn (AWS s3)
+- Dagpi-Cdn (AWS s3 + cloudfront)
+- AWS cloudfront
+- AWS glacier backups
 - Dagpi-Reset (AWS lambda)
 - Dagpi-Central-db (AWS RDS)
-- Dagpi-Billing-Db (AWS dynamo)
+- Stripe Checkout (premium checkout + donations)
+- PayPal Checkout (donations)
 
 Server Items, are all run using docker and networked via docker-compose
 
@@ -66,6 +75,7 @@ Server Items, are all run using docker and networked via docker-compose
 - prometheus
 - grafana
 - postgres-exporter
+- postgres-backup
 
 For a guide on how to deploy, its coming soon!
 
