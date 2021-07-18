@@ -14,14 +14,13 @@ In a nutshell Dagpi consists of the following repos
 
 Source: [dagpi-image](https://github.com/daggy1234/dagpi-image)
 
-This is the core of dagpi's image manipulation system. This microservice houses all of the code that takes in Image URL's and outputs processed images as files. Users can leverage a wide varity of filters, effects and memes. 
+This is the core of dagpi's image manipulation system. This microservice houses all of the code that takes in Image URL's and outputs processed images as files. Users can leverage a wide varity of filters, effects and memes.
 
 ### Dagpi-Data
 
 Source: [dagpi-data](https://github.com/daggy1234/dagpi-data)
 
 This is used by dagpi to serve pre-prepared json datasets with a high speed service. It also takes advantage of powerful libraries to allow text search for certain datasets.
-
 
 ### Dagpi-Auth
 
