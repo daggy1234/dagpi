@@ -41,6 +41,136 @@ Once your app is approved. You'll get access to a dashboard!
 <img src="https://i.imgur.com/mgAXitK.png" />
 
 
+## CLI tokens
+
+Dagpi-CLI is an easy way for you to manage your dagpi app, as well as enjoy additional features like status.
+
+The dagpi CLI can be installed on most major platforms with a plethora of ways.
+
+### Installation
+
+#### Windows
+
+##### with cargo
+
+```shell
+cargo install --git https://github.com/Daggy1234/dagpi-cli --branch main dagpi
+```
+
+
+
+##### with binary
+
+1) Head to releases and download the latest `x86_64-pc-windows-msvc.zip`, extract it and find the `dagpi.exe` binary!
+2) Add the path of the exe file to windows path [guide here](https://www.mathworks.com/matlabcentral/answers/94933-how-do-i-edit-my-system-path-in-windows)
+3) Restart your terminal and the cli should work
+4) CLI can be updated with a simple `dagpi update`
+
+#### Macos
+
+##### with cargo
+
+```shell
+cargo install --git https://github.com/Daggy1234/dagpi-cli --branch main dagpi
+```
+
+##### with homebrew
+
+```shell
+brew tap daggy1234/tap
+brew install dagpi --verbose
+```
+
+##### binary
+
+1) Install the latest macos binary `dagpi-macos`
+2) Give it executeable permission 
+3) Move to path
+4) Test it out
+
+Below is a convinence script. For user installation
+
+```shell
+curl -s -L https://github.com/Daggy1234/dagpi-cli/releases/download/v0.4.2/dagpi-0.4.2-x86_64-apple-darwin.tar.gz | tar -xvz -O > ~/.local/bin/dagpi
+chmod +x ~/.local/bin/dagpi
+```
+
+You can auto update this binary also with `dagpi update`.
+
+#### Linux
+
+##### with cargo
+
+```shell
+cargo install --git https://github.com/Daggy1234/dagpi-cli --branch main dagpi
+```
+
+##### Binary
+
+1) Download the binary for your CPU architecture (x86_64, aarch)
+2) Add executeable perms to the binary
+3) Copy binary to your user's path
+4) Test it. Script below
+
+This for x86_64 linux. This will not work on arm. Please Check if your computer is arm (rasberrypi's are arm).
+
+```shell
+curl -s -L https://github.com/Daggy1234/dagpi-cli/releases/download/v0.4.2/dagpi-0.4.2-x86_64-unknown-linux-gnu.tar.gz | tar -xvz -O > ~/.local/bin/dagpi
+chmod +x ~/.local/bin/dagpi
+```
+
+### Updates
+
+#### Cargo Updates
+
+You have to rebuild
+
+```shell
+cargo install --git https://github.com/Daggy1234/dagpi-cli --branch main dagpi
+```
+
+#### with binary
+
+
+Dagpi binary updates are pretty nifty.  Just do 
+```cargo
+dagpi update
+```
+and it should handle the rest!
+
+
+#### Package Managers
+
+Use your package managers update command
+
+
+### Using CLI
+
+Just use 
+```shell
+dagpi -h
+```
+
+to view all available commands and help.
+
+TO get the CLI setup use  to get redirected to the login window
+
+```shell
+dagpi login
+```
+
+<img src="https://i.imgur.com/e8GHvJr.png" />
+
+Create a new token on the web page opened. 
+
+<img src="https://i.imgur.com/S75C1wQ.png" />
+
+Then Export the token you created by clicking on the pink terminal export button!
+
+<img src="https://i.imgur.com/bnlarlE.png" />
+
+<img src="https://i.imgur.com/VS8H8Zo.png" />
+
 ## Code
 
 All of the dagpi code is open source. We will have a deployment guide out soon, but you can simply use the Github Repos for now.
