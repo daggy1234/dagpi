@@ -4,7 +4,7 @@ A fast, and easy to use API. Enjoy powerful image manipulation, high quality dat
 
 ## About
 
-This repo is a central hub for all of the dagpi repos. It houses info like the API schmea, as well as a link to other repo's and explanations about their functions.
+This repo is a central hub for all of the dagpi repos. It houses info like the API schema, as well as a link to other repo's and explanations about their functions.
 
 ## Repos
 
@@ -43,7 +43,7 @@ Rather than running sensitive stuff in our website, or exposing the critical dag
 
 ### Dagpi-Cli
 
-Source: [dagpi-central](https://github.com/daggy1234/dagpi-cli)
+Source: [dagpi-cli](https://github.com/daggy1234/dagpi-cli)
 
 A command line interface for managing your dagpi app. Built in rust and easy to use.
 
