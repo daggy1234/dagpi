@@ -43,9 +43,14 @@ Once your app is approved. You'll get access to a dashboard!
 
 ## CLI tokens
 
-Dagpi-CLI is an easy way for you to manage your dagpi app, as well as enjoy additional features like status.
+Dagpi-CLI is an easy way for you to manage your dagpi app, as well as enjoy additional features like viewing wether dagpi is online or not.
 
 The dagpi CLI can be installed on most major platforms with a plethora of ways.
+
+What is Cargo?
+
+Cargo is the rust package manager. If you installed rust on your system, you should have it. You can check with `cargo -V`.
+Using cargo isn't essential, but it is an easy way to install the CLI if rust is present.
 
 ### Installation
 
@@ -66,7 +71,7 @@ cargo install --git https://github.com/Daggy1234/dagpi-cli --branch main dagpi
 3) Restart your terminal and the cli should work
 4) CLI can be updated with a simple `dagpi update`
 
-#### Macos
+#### macOS
 
 ##### with cargo
 
@@ -112,7 +117,7 @@ cargo install --git https://github.com/Daggy1234/dagpi-cli --branch main dagpi
 3) Copy binary to your user's path
 4) Test it. Script below
 
-This for x86_64 linux. This will not work on arm. Please Check if your computer is arm (rasberrypi's are arm).
+This for x86_64 linux.Most desktop computers are x86_64 .Based on the type of CPU you have, you may need to change the platform. For example rasberry pi's don't use  x86_64. Rasberry pi users  should use our `arm` binaries. Double check your CPU architecture.
 
 ```shell
 curl -s -L https://github.com/Daggy1234/dagpi-cli/releases/download/v0.4.2/dagpi-0.4.2-x86_64-unknown-linux-gnu.tar.gz | tar -xvz -O > ~/.local/bin/dagpi
