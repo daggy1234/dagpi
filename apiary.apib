@@ -1898,7 +1898,7 @@ Explosion.
 cross dissolve from powerpoint.
 
 #### Headers
-| Header         | Value        |
+| Header         | Value        |ns
 | :------------- | -----------: |
 | Authorization  | Token        |
 
@@ -1907,7 +1907,8 @@ cross dissolve from powerpoint.
 + Parameters
     
     + url: https://picsum.photos/400/300 (required, string) -  The Url for the image. Png/jpeg/gif
-    + transparent: false (bool) - wether ot not to make background image
+    + transparent: false (optional, bool) - wether ot not to make background image
+        + Default: false
 
 + Request
 
@@ -4448,9 +4449,9 @@ The meme.
         {
             "message": "File found was not of the Appropriate image type"
         }
-## Discord [GET /image/yt/{?url}{?username}{?text}{?dark}]
+## Youtube Comment [GET /image/yt/{?url}{?username}{?text}{?dark}]
 
-Generate realistic discord messages (Dark Mode).
+Generate realistic Youtube messages (Dark Mode).
 
 #### Headers
 | Header         | Value        |
